@@ -1,0 +1,167 @@
+:root {
+  --white: #e0e0e0;
+  --black: #111111;
+  --gray-content: #d7d7d7;
+  --gray: #cecece;
+  --yellow: #ffa100;
+  --green: #2c7021;
+  --red: #b6413d;
+}
+
+* {
+  font-size: 1rem;
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: var(--black);
+}
+
+body {
+  background: var(--white);
+}
+
+input {
+  border: none;
+  border-bottom: 1px solid var(--black);
+  background: none;
+  padding: 5px;
+  width: 200px;
+}
+
+button {
+  background: var(--gray);
+  border: none;
+  cursor: pointer;
+  transition: filter 400ms;
+  width: 339px;
+  height: 52px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  img {
+    width: 20px;
+  }
+
+  &.actived {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  &:hover {
+    filter: brightness(0.8);
+  }
+}
+
+.container {
+  padding: 30px;
+  display: flex;
+  gap: 30px;
+}
+
+main {
+  width: 100%;
+
+  .title {
+    font-size: 1.3rem;
+    display: flex;
+    gap: 5px;
+
+    .title-yellow {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--yellow);
+    }
+  }
+
+  .group-content {
+    display: flex;
+    gap: 10px;
+  }
+
+  .content {
+    background: var(--gray-content);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 10px 0;
+    width: 100%;
+
+    .group-inputs-views {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      gap: 50px;
+
+      .group-input {
+        display: flex;
+        gap: 10px;
+
+        .input {
+          p {
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+          }
+        }
+      }
+
+      .group-views {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+
+        .total {
+          p {
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+          }
+          .value {
+            font-size: 1.2rem;
+            font-weight: 600;
+          }
+
+          .value-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+
+            &.yes {
+              color: var(--green);
+            }
+
+            &.no {
+              color: var(--red);
+            }
+          }
+        }
+      }
+    }
+
+    ///
+    .group-total-need {
+      display: flex;
+      align-items: center;
+      position: relative;
+      justify-content: flex-end;
+      margin-right: 100px;
+
+      img {
+        position: absolute;
+        left: 5px;
+        width: 80px;
+      }
+
+      .total-need {
+        display: flex;
+        gap: 20px;
+        align-items: flex-end;
+
+        .value-total-need {
+          font-size: 1.5rem;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

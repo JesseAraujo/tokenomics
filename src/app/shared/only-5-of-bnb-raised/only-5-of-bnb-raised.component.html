@@ -1,0 +1,110 @@
+<div class="title">
+  Presale
+  <div class="title-yellow">Details</div>
+</div>
+
+<div class="content">
+  <div class="group-inputs-views">
+    <div class="group-input">
+      <div class="input">
+        <p>Total Supply</p>
+        <input
+          type="text"
+          [(ngModel)]="totalSupply"
+          placeholder="000.000.000"
+        />
+      </div>
+      <div class="input">
+        <p>Hardcap</p>
+        <input type="text" [(ngModel)]="hardcap" placeholder="000.000.000" />
+      </div>
+      <div class="input">
+        <p>Presale Rate</p>
+        <input
+          type="text"
+          [(ngModel)]="presaleRate"
+          placeholder="000.000.000"
+        />
+      </div>
+    </div>
+    <div class="group-views">
+      <div class="total">
+        <p>Total Tokens for Presale</p>
+        <div class="value">{{ totalTokensForPresale }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="group-inputs-views">
+    <div class="group-input">
+      <div class="input">
+        <p>Listing Rate</p>
+        <input
+          type="text"
+          [(ngModel)]="listingRate"
+          placeholder="000.000.000"
+        />
+      </div>
+      <div class="input">
+        <p>Liquidity Percentage on Pancake</p>
+        <input
+          type="text"
+          [(ngModel)]="liquidityPercentageOnPancake"
+          placeholder="000.000.000"
+        />
+      </div>
+    </div>
+    <div class="group-views">
+      <div class="total">
+        <p>Total Tokens for Liquidity</p>
+        <div class="value">{{ totalTokensForLiquidity }}</div>
+      </div>
+      <div class="total">
+        <p>Token fee</p>
+        <div class="value">{{ tokenFee }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="group-total-need">
+    <img src="assets/img/token.svg" alt="" />
+
+    <div class="total-need">
+      Total tokens needed to create a PinkSale pool
+
+      <div class="value-total-need">{{ totalTokensNeeded }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="group-content">
+  <div class="content">
+    <div class="group-inputs-views">
+      <div class="group-views">
+        <div class="total">
+          <p>Check if it works or not</p>
+          <div class="value-text yes">It Works</div>
+        </div>
+        <div class="total">
+          <p>You will use how many % of the total supply</p>
+          <div class="value">{{ youWillUseHowManyTotalSupply }}%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="group-inputs-views">
+      <div class="group-views">
+        <div class="total">
+          <p>Total BNB you'll get to your owner wallet</p>
+          <div class="value">{{ totalBnbOwnerWallet }}</div>
+        </div>
+        <div class="total">
+          <p>Total BNB will be listed on PancakeSwap</p>
+          <div class="value">{{ totalBnbPancakeSwap }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
