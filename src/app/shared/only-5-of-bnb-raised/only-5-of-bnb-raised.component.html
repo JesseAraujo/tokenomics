@@ -16,7 +16,12 @@
       </div>
       <div class="input">
         <p>Hardcap</p>
-        <input type="text" [(ngModel)]="hardcap" placeholder="000.000.000" />
+        <input
+          type="text"
+          [(ngModel)]="hardcap"
+          placeholder="000.000.000"
+          (input)="handleCalcTotalTokensForPresale()"
+        />
       </div>
       <div class="input">
         <p>Presale Rate</p>
@@ -24,6 +29,7 @@
           type="text"
           [(ngModel)]="presaleRate"
           placeholder="000.000.000"
+          (input)="handleCalcTotalTokensForPresale()"
         />
       </div>
     </div>
@@ -42,6 +48,7 @@
           type="text"
           [(ngModel)]="listingRate"
           placeholder="000.000.000"
+          (input)="handleCalcTotalTokensForLiquidity()"
         />
       </div>
       <div class="input">
@@ -50,6 +57,7 @@
           type="text"
           [(ngModel)]="liquidityPercentageOnPancake"
           placeholder="000.000.000"
+          (input)="handleCalcTotalTokensForLiquidity()"
         />
       </div>
     </div>
@@ -84,7 +92,9 @@
       <div class="group-views">
         <div class="total">
           <p>Check if it works or not</p>
-          <div class="value-text yes">It Works</div>
+          <div class="value-text" [ngClass]="isWork > 0 ? 'yes' : 'no'">
+            {{ isWork > 0 ? "It Works" : "This doesnt work..." }}
+          </div>
         </div>
         <div class="total">
           <p>You will use how many % of the total supply</p>

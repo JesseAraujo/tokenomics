@@ -21,4 +21,45 @@ export class Only5OfBnbRaisedComponent {
   public youWillUseHowManyTotalSupply = 0;
   public totalBnbOwnerWallet = 0;
   public totalBnbPancakeSwap = 0;
+
+  isWork = 0;
+
+  handleCalcTotalTokensForPresale() {
+    this.totalTokensForPresale = this.presaleRate * this.hardcap;
+  }
+
+  handleCalcTotalTokensForLiquidity() {
+    this.totalTokensForLiquidity =
+      this.hardcap *
+      0.95 *
+      this.listingRate *
+      (this.liquidityPercentageOnPancake / 100);
+
+    this.calcTotalTokensNeeded();
+  }
+
+  calcTotalTokensNeeded() {
+    this.totalTokensNeeded =
+      1 * (this.presaleRate * this.hardcap) +
+      (0.95 *
+        (this.listingRate * this.hardcap) *
+        this.liquidityPercentageOnPancake) /
+        100;
+
+    this.calcIsWork();
+    this.calcTotalBnb();
+  }
+
+  calcIsWork() {
+    this.isWork = this.totalSupply - this.totalTokensNeeded;
+    this.youWillUseHowManyTotalSupply =
+      (this.totalTokensNeeded / this.totalSupply) * 100;
+  }
+
+  calcTotalBnb() {
+    this.totalBnbOwnerWallet =
+      this.hardcap * (1 - this.liquidityPercentageOnPancake / 100) * 0.95;
+    this.totalBnbPancakeSwap =
+      this.hardcap * (this.liquidityPercentageOnPancake / 100) * 0.95;
+  }
 }
