@@ -9,7 +9,6 @@
 }
 
 * {
-  font-size: 1rem;
   font-family: "Inter", sans-serif;
   box-sizing: border-box;
   margin: 0;
@@ -34,7 +33,7 @@ button {
   border: none;
   cursor: pointer;
   transition: filter 400ms;
-  width: 339px;
+  width: 288px;
   height: 52px;
   border-radius: 8px;
   display: flex;
@@ -68,7 +67,7 @@ main {
   .title {
     font-size: 1.3rem;
     display: flex;
-    gap: 5px;
+    text-transform: uppercase;
 
     .title-yellow {
       font-size: 1.3rem;
@@ -80,6 +79,13 @@ main {
   .group-content {
     display: flex;
     gap: 10px;
+  }
+
+  .input {
+    p {
+      font-size: 0.8rem;
+      margin-bottom: 5px;
+    }
   }
 
   .content {
@@ -98,13 +104,6 @@ main {
       .group-input {
         display: flex;
         gap: 10px;
-
-        .input {
-          p {
-            font-size: 0.8rem;
-            margin-bottom: 5px;
-          }
-        }
       }
 
       .group-views {
@@ -162,6 +161,52 @@ main {
           font-weight: 600;
         }
       }
+    }
+
+    ///
+    .group-new-tokenomics {
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+
+      .input {
+        input {
+          width: 100px !important;
+        }
+      }
+
+      .btn-add {
+        background: var(--black);
+        width: 30px;
+        height: 30px;
+
+        img {
+          width: 10px;
+        }
+
+        &.disabled {
+          background: var(--gray);
+          cursor: not-allowed;
+          filter: none;
+        }
+      }
+    }
+
+    .group-chart {
+      font-size: 0.8rem;
+      text-align: center;
+    }
+  }
+
+  .list-tokenomics {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--gray);
+    padding: 4px;
+    font-size: 0.8rem;
+
+    &:last-child {
+      border: none;
     }
   }
 }
