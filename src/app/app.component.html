@@ -1,21 +1,52 @@
 <div class="container">
   <aside>
-    <img src="assets/img/logo.png" alt="" srcset="" />
+    <a href="https://www.pinksale.finance/" target="_blank"
+      ><img src="assets/img/logo.svg" alt="" srcset="" width="130"
+    /></a>
 
     <div class="group-aside">
-      <div class="text-1">PinkSale Calculator and Token Metrics</div>
+      <div class="text-1">
+        Tokenomics Calculator & Metrics for PinkSale LaunchPad
+      </div>
 
       <nav>
-        <button type="button" class="btn" [ngClass]="{'actived' : stepTokenomics === 1}" (click)="handleSetStepTokenomics(1)">Only 5% of BNB Raised</button>
-        <button type="button" class="btn" [ngClass]="{'actived' : stepTokenomics === 2}" (click)="handleSetStepTokenomics(2)">2% of BNB & 2% of Token</button>
-        <button type="button" class="btn" [ngClass]="{'actived' : stepTokenomics === 3}" (click)="handleSetStepTokenomics(3)">Fair Launch - 5% BNB</button>
+        <button
+          type="button"
+          class="btn"
+          [ngClass]="{ actived: stepTokenomics === 1 }"
+          (click)="handleSetStepTokenomics(1)"
+        >
+          Only 5% of BNB Raised
+        </button>
+        <button
+          type="button"
+          class="btn"
+          [ngClass]="{ actived: stepTokenomics === 2 }"
+          (click)="handleSetStepTokenomics(2)"
+        >
+          2% of BNB & 2% of Token
+        </button>
+        <button
+          type="button"
+          class="btn"
+          [ngClass]="{ actived: stepTokenomics === 3 }"
+          (click)="handleSetStepTokenomics(3)"
+        >
+          Fair Launch - 5% BNB
+        </button>
       </nav>
 
       <div class="help-desk">
         <p>Contact us on our Telegram if you need help!</p>
 
-        <img src="assets/img/logos_telegram.svg" alt="" srcset="" />
+        <a href="https://t.me/pinkmoonfinance" target="_blank"
+          ><img src="assets/img/logos_telegram.svg" alt="" srcset=""
+        /></a>
       </div>
+
+      <a href="https://www.pinksale.finance/" target="_blank"
+        ><img src="assets/img/pinklogo.svg" alt="" srcset="" width="180"
+      /></a>
 
       <footer>
         <!--div class="export">
@@ -32,7 +63,6 @@
 
   <!--main-->
   <main>
-
     <app-only-5-of-bnb-raised></app-only-5-of-bnb-raised>
   </main>
 </div>

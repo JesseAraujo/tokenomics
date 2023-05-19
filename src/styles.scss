@@ -1,11 +1,13 @@
 :root {
-  --white: #e0e0e0;
+  --white: #fcfcfc;
   --black: #111111;
-  --gray-content: #d7d7d7;
-  --gray: #cecece;
+  --gray-content: #f1f1f1;
+  --gray: #dfdfdf;
   --yellow: #ffa100;
   --green: #2c7021;
   --red: #b6413d;
+  --pink: #f95192;
+  --pink-2: #fdeaf1;
 }
 
 * {
@@ -14,10 +16,23 @@
   margin: 0;
   padding: 0;
   color: var(--black);
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--gray);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--yellow);
+  }
 }
 
 body {
   background: var(--white);
+  overflow: hidden;
 }
 
 input {
@@ -25,7 +40,22 @@ input {
   border-bottom: 1px solid var(--black);
   background: none;
   padding: 5px;
-  width: 200px;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 1;
+  }
+}
+
+.input-checkbox {
+  display: flex;
+  gap: 10px;
+  margin: 0 30px;
+  align-items: center;
+
+  p {
+    font-size: 0.8rem;
+  }
 }
 
 button {
@@ -33,7 +63,7 @@ button {
   border: none;
   cursor: pointer;
   transition: filter 400ms;
-  width: 288px;
+  width: 220px;
   height: 52px;
   border-radius: 8px;
   display: flex;
@@ -46,8 +76,8 @@ button {
   }
 
   &.actived {
-    background: var(--black);
-    color: var(--white);
+    background: var(--pink-2);
+    color: var(--pink);
   }
 
   &:hover {
@@ -56,23 +86,29 @@ button {
 }
 
 .container {
-  padding: 30px;
   display: flex;
   gap: 30px;
 }
 
+aside {
+  padding: 30px 0 30px 30px;
+}
+
 main {
   width: 100%;
+  height: 100vh;
+  overflow: auto;
+  padding: 30px 20px 30px 0;
 
   .title {
     font-size: 1.3rem;
     display: flex;
-    text-transform: uppercase;
+    gap: 5px;
+    font-weight: 600;
 
     .title-yellow {
       font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--yellow);
+      color: var(--pink);
     }
   }
 
@@ -204,6 +240,25 @@ main {
     border-bottom: 1px solid var(--gray);
     padding: 4px;
     font-size: 0.8rem;
+    gap: 5px;
+    align-items: center;
+
+    .color {
+      width: 10%;
+    }
+
+    .name {
+      width: 60%;
+    }
+
+    .value {
+      width: 30%;
+      text-align: end;
+
+      input {
+        width: 100% !important;
+      }
+    }
 
     &:last-child {
       border: none;

@@ -9,6 +9,7 @@ import {
   CurrencyMaskConfig,
   CurrencyMaskModule,
 } from 'ng2-currency-mask';
+import { OnlyNumbersDirective } from 'src/services/only-numbers.directive';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: 'right',
@@ -21,7 +22,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
 };
 
 @NgModule({
-  declarations: [AppComponent, Only5OfBnbRaisedComponent],
+  declarations: [AppComponent, Only5OfBnbRaisedComponent, OnlyNumbersDirective],
   imports: [BrowserModule, AppRoutingModule, FormsModule, CurrencyMaskModule],
   providers: [
     {
@@ -29,6 +30,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
       useValue: CustomCurrencyMaskConfig,
     },
   ],
+  exports: [OnlyNumbersDirective],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
