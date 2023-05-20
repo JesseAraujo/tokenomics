@@ -72,6 +72,7 @@
     </nav>
   </header>
 
+  <!--desk-->
   <aside>
     <a href="http://stevelabs.io/services" target="_blank"
       ><img
@@ -87,7 +88,7 @@
     /></a>
 
     <div class="group-aside">
-      <div class="label">5% BNB / 2% BNB + 2% TOKEN</div>
+      <!--div class="label">5% BNB / 2% BNB + 2% TOKEN</!--div-->
 
       <div class="text-1">
         Tokenomics Calculator & Metrics for PinkSale LaunchPad
@@ -101,6 +102,10 @@
           (click)="handleSetStepTokenomics(1)"
         >
           Presale
+          <app-popover
+            [iconColor]="stepTokenomics === 1 ? 'var(--pink)' : 'var(--black)'"
+            >How to create PreSale</app-popover
+          >
         </button>
         <button
           type="button"
@@ -109,6 +114,10 @@
           (click)="handleSetStepTokenomics(2)"
         >
           Presale WhiteList
+          <app-popover
+            [iconColor]="stepTokenomics === 2 ? 'var(--pink)' : 'var(--black)'"
+            >How to Configure WhiteList</app-popover
+          >
         </button>
         <button
           type="button"
@@ -117,6 +126,10 @@
           (click)="handleSetStepTokenomics(3)"
         >
           Subscription
+          <app-popover
+            [iconColor]="stepTokenomics === 3 ? 'var(--pink)' : 'var(--black)'"
+            >How to Create Subscription</app-popover
+          >
         </button>
         <button
           type="button"
@@ -125,6 +138,10 @@
           (click)="handleSetStepTokenomics(4)"
         >
           FairLaunch
+          <app-popover
+            [iconColor]="stepTokenomics === 4 ? 'var(--pink)' : 'var(--black)'"
+            >How to Create FairLaunch</app-popover
+          >
         </button>
       </nav>
 

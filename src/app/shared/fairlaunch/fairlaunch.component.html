@@ -7,7 +7,10 @@
   <div class="group-inputs-views">
     <div class="group-input">
       <div class="input">
-        <p>Total Supply</p>
+        <p>
+          Total Supply
+          <app-popover>Total circulating tokens for your project</app-popover>
+        </p>
         <input
           OnlyNumbers
           type="text"
@@ -19,7 +22,13 @@
         />
       </div>
       <div class="input">
-        <p>Total Tokens for Fair Launch</p>
+        <p>
+          Total Tokens for Fair Launch
+          <app-popover
+            >How many tokens do you want to put up for sale at fair
+            launch?</app-popover
+          >
+        </p>
         <input
           OnlyNumbers
           type="text"
@@ -32,7 +41,12 @@
         />
       </div>
       <div class="input">
-        <p>SoftCap</p>
+        <p>
+          SoftCap
+          <app-popover
+            >Minimum value of bnb filled to develop your project</app-popover
+          >
+        </p>
         <input
           OnlyNumbers
           type="text"
@@ -57,7 +71,13 @@
   <div class="group-inputs-views">
     <div class="group-input">
       <div class="input">
-        <p>Liquidity Percent</p>
+        <p>
+          Liquidity Percent
+          <app-popover
+            >Percentage of Bnb's filled that will be added to
+            liquidity</app-popover
+          >
+        </p>
         <input
           type="text"
           OnlyNumbers

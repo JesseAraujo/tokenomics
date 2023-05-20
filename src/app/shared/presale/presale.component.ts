@@ -28,6 +28,7 @@ export class PresaleComponent implements OnInit {
   public burnet = 0;
   public valueUnloked = 100;
   public safuContract = false;
+  public is5Bnb = true;
 
   public isWork = 0;
 
@@ -202,6 +203,10 @@ export class PresaleComponent implements OnInit {
     }
 
     return color;
+  }
+
+  handleSetBnb() {
+    this.is5Bnb = !this.is5Bnb;
   }
 
   /////

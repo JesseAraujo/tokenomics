@@ -7,7 +7,11 @@
   <div class="group-inputs-views">
     <div class="group-input">
       <div class="input">
-        <p>Total Supply</p>
+        <p>
+          Total Supply<app-popover
+            >Total circulating tokens for your project</app-popover
+          >
+        </p>
         <input
           OnlyNumbers
           type="text"
@@ -20,7 +24,12 @@
         />
       </div>
       <div class="input">
-        <p>Hardcap</p>
+        <p>
+          Hardcap
+          <app-popover
+            >Maximum limit of bnb filled to develop your project</app-popover
+          >
+        </p>
         <input
           OnlyNumbers
           type="text"
@@ -33,7 +42,12 @@
         />
       </div>
       <div class="input">
-        <p>Presale Price</p>
+        <p>
+          Presale Price
+          <app-popover
+            >Token price in presale phase, 1 BNB = How many Token</app-popover
+          >
+        </p>
         <input
           OnlyNumbers
           type="text"
@@ -64,7 +78,12 @@
   <div class="group-inputs-views">
     <div class="group-input">
       <div class="input">
-        <p>Listing Price</p>
+        <p>
+          Listing Price
+          <app-popover
+            >Token price at launch, 1 BNB = How many Token</app-popover
+          >
+        </p>
         <input
           type="text"
           OnlyNumbers
@@ -83,10 +102,26 @@
           [(ngModel)]="safuContract"
           (click)="handleSelectSafuContract()"
         />
-        <p for="safuContract">Safu Contract</p>
+        <p for="safuContract">
+          Safu Contract
+          <app-popover
+            >Criteria of SAFU Project -
+            <a
+              href="https://docs.pinksale.finance/important/safu-contract#safu-developers"
+              target="_blank"
+              >https://docs.pinksale.finance/important/safu-contract#safu-developers</a
+            ></app-popover
+          >
+        </p>
       </div>
       <div class="input">
-        <p>Liquidity Percent</p>
+        <p>
+          Liquidity Percent
+          <app-popover
+            >Percentage of Bnb's filled that will be added to
+            liquidity</app-popover
+          >
+        </p>
         <input
           type="text"
           OnlyNumbers

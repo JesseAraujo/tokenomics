@@ -13,6 +13,7 @@ import { PresaleComponent } from './shared/presale/presale.component';
 import { PresaleWhiteListComponent } from './shared/presale-whiteList/presale-whiteList.component';
 import { SubscriptionComponent } from './shared/subscription/subscription.component';
 import { FairLaunchComponent } from './shared/fairlaunch/fairlaunch.component';
+import { PopoverModule } from './shared/popover/popover.module';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: 'right',
@@ -33,7 +34,13 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     SubscriptionComponent,
     FairLaunchComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, CurrencyMaskModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    CurrencyMaskModule,
+    PopoverModule,
+  ],
   providers: [
     {
       provide: CURRENCY_MASK_CONFIG,
