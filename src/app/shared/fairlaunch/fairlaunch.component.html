@@ -35,6 +35,7 @@
           inputmode="numeric"
           [(ngModel)]="totalSupply"
           placeholder="000.000.000"
+          (blur)="handleCalcTotalTokensForLiquidity()"
           currencyMask
           [options]="{ precision: 0, decimal: '', align: 'left' }"
         />

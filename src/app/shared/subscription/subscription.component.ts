@@ -42,19 +42,21 @@ export class SubscriptionComponent implements OnInit {
   }
 
   handleCalcTotalTokensForLiquidity() {
-    if (this.safuContract && this.liquidityPercentageOnPancake < 60) {
-      alert('Error: Allowed value greater than or equal to 60');
-      this.liquidityPercentageOnPancake = 60;
-      return;
+    if (this.totalSupply) {
+      if (this.safuContract && this.liquidityPercentageOnPancake < 60) {
+        alert('Error: Allowed value greater than or equal to 60');
+        this.liquidityPercentageOnPancake = 60;
+        return;
+      }
+
+      this.totalTokensForLiquidity =
+        this.hardcap *
+        0.95 *
+        this.listingRate *
+        (this.liquidityPercentageOnPancake / 100);
+
+      this.calcTotalTokensNeeded();
     }
-
-    this.totalTokensForLiquidity =
-      this.hardcap *
-      0.95 *
-      this.listingRate *
-      (this.liquidityPercentageOnPancake / 100);
-
-    this.calcTotalTokensNeeded();
   }
 
   calcTotalTokensNeeded() {
