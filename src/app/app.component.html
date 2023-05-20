@@ -1,10 +1,94 @@
 <div class="container">
+  <header>
+    <div class="group-logo">
+      <a href="http://stevelabs.io/services" target="_blank"
+        ><img
+          src="assets/img/logo.svg"
+          alt="Logo Stevelabs"
+          width="130"
+          *ngIf="!isDark" />
+        <img
+          src="assets/img/logo-white.svg"
+          alt="Logo Stevelabs"
+          width="130"
+          *ngIf="isDark"
+      /></a>
+
+      <div class="group-buttons">
+        <button
+          type="button"
+          (click)="handleSetTheme()"
+          [ngClass]="{ 'actived-mode': !isDark }"
+        >
+          <img src="assets/img/light.svg" alt="light-mode" title="Light" />
+        </button>
+        <button
+          type="button"
+          (click)="handleSetTheme()"
+          [ngClass]="{ 'actived-mode': isDark }"
+        >
+          <img src="assets/img/dark.svg" alt="dark-mode" title="Dark" />
+        </button>
+      </div>
+    </div>
+
+    <div class="text-1">
+      Tokenomics Calculator & Metrics for PinkSale LaunchPad
+    </div>
+
+    <nav>
+      <button
+        type="button"
+        class="btn"
+        [ngClass]="{ actived: stepTokenomics === 1 }"
+        (click)="handleSetStepTokenomics(1)"
+      >
+        Presale
+      </button>
+      <button
+        type="button"
+        class="btn"
+        [ngClass]="{ actived: stepTokenomics === 2 }"
+        (click)="handleSetStepTokenomics(2)"
+      >
+        Presale WhiteList
+      </button>
+      <button
+        type="button"
+        class="btn"
+        [ngClass]="{ actived: stepTokenomics === 3 }"
+        (click)="handleSetStepTokenomics(3)"
+      >
+        Subscription
+      </button>
+      <button
+        type="button"
+        class="btn"
+        [ngClass]="{ actived: stepTokenomics === 4 }"
+        (click)="handleSetStepTokenomics(4)"
+      >
+        FairLaunch
+      </button>
+    </nav>
+  </header>
+
   <aside>
-    <a href="https://www.pinksale.finance/" target="_blank"
-      ><img src="assets/img/logo.svg" alt="" srcset="" width="130"
+    <a href="http://stevelabs.io/services" target="_blank"
+      ><img
+        src="assets/img/logo.svg"
+        alt="Logo Stevelabs"
+        width="130"
+        *ngIf="!isDark" />
+      <img
+        src="assets/img/logo-white.svg"
+        alt="Logo Stevelabs"
+        width="130"
+        *ngIf="isDark"
     /></a>
 
     <div class="group-aside">
+      <div class="label">5% BNB / 2% BNB + 2% TOKEN</div>
+
       <div class="text-1">
         Tokenomics Calculator & Metrics for PinkSale LaunchPad
       </div>
@@ -16,7 +100,7 @@
           [ngClass]="{ actived: stepTokenomics === 1 }"
           (click)="handleSetStepTokenomics(1)"
         >
-          Only 5% of BNB Raised
+          Presale
         </button>
         <button
           type="button"
@@ -24,7 +108,7 @@
           [ngClass]="{ actived: stepTokenomics === 2 }"
           (click)="handleSetStepTokenomics(2)"
         >
-          2% of BNB & 2% of Token
+          Presale WhiteList
         </button>
         <button
           type="button"
@@ -32,29 +116,55 @@
           [ngClass]="{ actived: stepTokenomics === 3 }"
           (click)="handleSetStepTokenomics(3)"
         >
-          Fair Launch - 5% BNB
+          Subscription
+        </button>
+        <button
+          type="button"
+          class="btn"
+          [ngClass]="{ actived: stepTokenomics === 4 }"
+          (click)="handleSetStepTokenomics(4)"
+        >
+          FairLaunch
         </button>
       </nav>
 
-      <div class="help-desk">
-        <p>Contact us on our Telegram if you need help!</p>
-
-        <a href="https://t.me/pinkmoonfinance" target="_blank"
-          ><img src="assets/img/logos_telegram.svg" alt="" srcset=""
-        /></a>
-      </div>
-
-      <a href="https://www.pinksale.finance/" target="_blank"
+      <a href="https://www.pinksale.finance/" target="_blank" class="logo-pink"
         ><img src="assets/img/pinklogo.svg" alt="" srcset="" width="180"
       /></a>
 
       <footer>
         <!--div class="export">
           <button type="button" class="btn">
-            <img src="assets/img/ph_export-light.svg" alt="" srcset="" />
-            Export - Only 5% of BNB Raised
+            <img src="assets/img/Vector.svg" alt="" srcset="" />
+            Export -
+            {{
+              stepTokenomics === 1
+                ? "Presale"
+                : stepTokenomics === 2
+                ? "Presale WhiteList"
+                : stepTokenomics === 3
+                ? "Subscription"
+                : "FairLaunch"
+            }}
           </button>
         </div-->
+
+        <div class="group-buttons">
+          <button
+            type="button"
+            (click)="handleSetTheme()"
+            [ngClass]="{ 'actived-mode': !isDark }"
+          >
+            <img src="assets/img/light.svg" alt="light-mode" title="Light" />
+          </button>
+          <button
+            type="button"
+            (click)="handleSetTheme()"
+            [ngClass]="{ 'actived-mode': isDark }"
+          >
+            <img src="assets/img/dark.svg" alt="dark-mode" title="Dark" />
+          </button>
+        </div>
 
         <div class="by">Developed by Jessé Brisola</div>
       </footer>
@@ -63,6 +173,27 @@
 
   <!--main-->
   <main>
-    <app-only-5-of-bnb-raised></app-only-5-of-bnb-raised>
+    <app-presale *ngIf="stepTokenomics === 1"></app-presale>
+    <app-presale-whiteList *ngIf="stepTokenomics === 2"></app-presale-whiteList>
+    <app-subscription *ngIf="stepTokenomics === 3"></app-subscription>
+    <app-fairlaunch *ngIf="stepTokenomics === 4"></app-fairlaunch>
+
+    <div class="help-desk">
+      <a href="https://t.me/pinkmoonfinance" target="_blank"
+        ><img
+          src="assets/img/logos_telegram.svg"
+          alt=""
+          title="Contact us on our Telegram if you need help!"
+          srcset=""
+      /></a>
+    </div>
   </main>
+
+  <footer>
+    <a href="https://www.pinksale.finance/" target="_blank"
+      ><img src="assets/img/pinklogo.svg" alt="" srcset="" width="200"
+    /></a>
+
+    <div class="by">Developed by Jessé Brisola</div>
+  </footer>
 </div>

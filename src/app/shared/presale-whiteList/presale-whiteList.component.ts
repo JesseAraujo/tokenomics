@@ -2,14 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 
 @Component({
-  selector: 'app-only-5-of-bnb-raised',
-  templateUrl: './only-5-of-bnb-raised.component.html',
-  styleUrls: [
-    '../../app.component.scss',
-    './only-5-of-bnb-raised.component.scss',
-  ],
+  selector: 'app-presale-whiteList',
+  templateUrl: './presale-whiteList.component.html',
+  styleUrls: ['../../app.component.scss', './presale-whiteList.component.scss'],
 })
-export class Only5OfBnbRaisedComponent implements OnInit {
+export class PresaleWhiteListComponent implements OnInit {
   public totalSupply: any = null;
   public hardcap: any = null;
   public presaleRate: any = null;
@@ -39,8 +36,6 @@ export class Only5OfBnbRaisedComponent implements OnInit {
   }
 
   handleCalcTotalTokensForPresale() {
-    console.log('aaa');
-
     this.totalTokensForPresale = this.presaleRate * this.hardcap;
 
     this.softCap = (this.hardcap * 25) / 100;

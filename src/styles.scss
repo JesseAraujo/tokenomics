@@ -2,12 +2,23 @@
   --white: #fcfcfc;
   --black: #111111;
   --gray-content: #f1f1f1;
-  --gray: #dfdfdf;
+  --gray: #ececec;
   --yellow: #ffa100;
   --green: #2c7021;
   --red: #b6413d;
   --pink: #f95192;
   --pink-2: #fdeaf1;
+}
+.dark-mode:root {
+  --white: #121212;
+  --black: #adadad;
+  --gray-content: #0c0c0c;
+  --gray: #1e1e1e;
+  --yellow: #ffa100;
+  --green: #2c7021;
+  --red: #b6413d;
+  --pink: #f95192;
+  --pink-2: #583844;
 }
 
 * {
@@ -85,15 +96,6 @@ button {
   }
 }
 
-.container {
-  display: flex;
-  gap: 30px;
-}
-
-aside {
-  padding: 30px 0 30px 30px;
-}
-
 main {
   width: 100%;
   height: 100vh;
@@ -153,12 +155,12 @@ main {
             margin-bottom: 5px;
           }
           .value {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
           }
 
           .value-text {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
 
             &.yes {
@@ -189,11 +191,12 @@ main {
 
       .total-need {
         display: flex;
-        gap: 20px;
-        align-items: flex-end;
+        gap: 10px;
+        align-items: center;
+        font-size: 0.9rem;
 
         .value-total-need {
-          font-size: 1.5rem;
+          font-size: 1.1rem;
           font-weight: 600;
         }
       }
@@ -207,7 +210,7 @@ main {
 
       .input {
         input {
-          width: 100px !important;
+          width: 100px;
         }
       }
 
@@ -262,6 +265,68 @@ main {
 
     &:last-child {
       border: none;
+    }
+  }
+}
+
+@media (max-width: 1204px) {
+  body {
+    overflow: auto;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  button {
+    &:hover {
+      filter: none;
+    }
+  }
+
+  main {
+    padding: 20px 15px;
+    overflow: hidden;
+    height: initial !important;
+
+    .group-inputs-views {
+      flex-direction: column;
+      gap: 20px !important;
+
+      .group-input {
+        flex-direction: column;
+      }
+
+      .group-views {
+        margin: 30px 0;
+      }
+    }
+
+    .group-total-need {
+      img {
+        display: none;
+      }
+    }
+
+    .group-content {
+      flex-direction: column;
+      gap: 0;
+
+      .group-views {
+        flex-direction: column !important;
+        gap: 20px !important;
+      }
+    }
+
+    .group-new-tokenomics {
+      align-items: initial !important;
+      flex-direction: column;
+
+      .input {
+        input {
+          width: 100% !important;
+        }
+      }
     }
   }
 }

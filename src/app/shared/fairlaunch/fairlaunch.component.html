@@ -14,33 +14,32 @@
           inputmode="numeric"
           [(ngModel)]="totalSupply"
           placeholder="000.000.000"
-          (blur)="handleCalcTotalTokensForPresale()"
           currencyMask
           [options]="{ precision: 0, decimal: '', align: 'left' }"
         />
       </div>
       <div class="input">
-        <p>Hardcap</p>
+        <p>Total Tokens for Fair Launch</p>
         <input
           OnlyNumbers
           type="text"
           inputmode="numeric"
-          [(ngModel)]="hardcap"
+          [(ngModel)]="totalTokensForFairLaunch"
           placeholder="0.000"
-          (blur)="handleCalcTotalTokensForPresale()"
+          (blur)="handleCalcFairLaunchRate()"
           currencyMask
           [options]="{ precision: 0, decimal: '', align: 'left' }"
         />
       </div>
       <div class="input">
-        <p>PreSale Price</p>
+        <p>SoftCap</p>
         <input
           OnlyNumbers
           type="text"
           inputmode="numeric"
-          [(ngModel)]="presaleRate"
+          [(ngModel)]="softCap"
           placeholder="000.000.000"
-          (blur)="handleCalcTotalTokensForPresale()"
+          (blur)="handleCalcFairLaunchRate()"
           currencyMask
           [options]="{ precision: 0, decimal: '', align: 'left' }"
         />
@@ -50,41 +49,13 @@
       <div class="total">
         <p>Total Tokens for Presale</p>
         <div class="value">
-          {{ totalTokensForPresale.toLocaleString("pt-BR") }}
-        </div>
-      </div>
-      <div class="total">
-        <p>SoftCap</p>
-        <div class="value">
-          {{ softCap.toLocaleString("pt-BR") }}
+          {{ fairLaunchRate.toLocaleString("pt-BR") }}
         </div>
       </div>
     </div>
   </div>
   <div class="group-inputs-views">
     <div class="group-input">
-      <div class="input">
-        <p>Listing Price</p>
-        <input
-          type="text"
-          OnlyNumbers
-          inputmode="numeric"
-          [(ngModel)]="listingRate"
-          placeholder="000.000.000"
-          (input)="handleCalcTotalTokensForLiquidity()"
-          currencyMask
-          [options]="{ precision: 0, decimal: '', align: 'left' }"
-        />
-      </div>
-      <div class="input-checkbox">
-        <input
-          type="checkbox"
-          id="safuContract"
-          [(ngModel)]="safuContract"
-          (click)="handleSelectSafuContract()"
-        />
-        <p for="safuContract">Safu Contract</p>
-      </div>
       <div class="input">
         <p>Liquidity Percent</p>
         <input
@@ -113,7 +84,6 @@
     </div>
   </div>
 </div>
-
 <div class="content">
   <div class="group-total-need">
     <img src="assets/img/token.svg" alt="" />
