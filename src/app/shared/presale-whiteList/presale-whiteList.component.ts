@@ -28,7 +28,7 @@ export class PresaleWhiteListComponent implements OnInit {
   public burnet = 0;
   public valueUnloked = 100;
   public safuContract = false;
-
+  public is5Bnb = true;
   public isWork = 0;
 
   ngOnInit() {
@@ -202,6 +202,10 @@ export class PresaleWhiteListComponent implements OnInit {
     }
 
     return color;
+  }
+
+  handleSetBnb(is5Bnb = false) {
+    this.is5Bnb = is5Bnb;
   }
 
   /////

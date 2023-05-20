@@ -8,14 +8,14 @@
     <button
       type="button"
       [ngClass]="{ actived: is5Bnb }"
-      (click)="handleSetBnb()"
+      (click)="handleSetBnb(true)"
     >
       5% BNB
     </button>
     <button
       type="button"
       [ngClass]="{ actived: !is5Bnb }"
-      (click)="handleSetBnb()"
+      (click)="handleSetBnb(false)"
     >
       2% BNB + 2% TOKEN
     </button>

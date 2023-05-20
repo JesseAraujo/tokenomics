@@ -88,8 +88,6 @@
     /></a>
 
     <div class="group-aside">
-      <!--div class="label">5% BNB / 2% BNB + 2% TOKEN</!--div-->
-
       <div class="text-1">
         Tokenomics Calculator & Metrics for PinkSale LaunchPad
       </div>
@@ -104,7 +102,12 @@
           Presale
           <app-popover
             [iconColor]="stepTokenomics === 1 ? 'var(--pink)' : 'var(--black)'"
-            >How to create PreSale</app-popover
+            >How to create PreSale -
+            <a
+              href="https://docs.pinksale.finance/launchpads/create-a-launchpad"
+              target="_blank"
+              >https://docs.pinksale.finance/launchpads/create-a-launchpad</a
+            ></app-popover
           >
         </button>
         <button
@@ -116,7 +119,12 @@
           Presale WhiteList
           <app-popover
             [iconColor]="stepTokenomics === 2 ? 'var(--pink)' : 'var(--black)'"
-            >How to Configure WhiteList</app-popover
+            >How to Configure WhiteList
+            <a
+              href="https://docs.pinksale.finance/launchpads/add-remove-whitelists"
+              target="_blank"
+              >https://docs.pinksale.finance/launchpads/add-remove-whitelists</a
+            ></app-popover
           >
         </button>
         <button
@@ -128,7 +136,12 @@
           Subscription
           <app-popover
             [iconColor]="stepTokenomics === 3 ? 'var(--pink)' : 'var(--black)'"
-            >How to Create Subscription</app-popover
+            >How to Create Subscription
+            <a
+              href="https://docs.pinksale.finance/subscription/create-a-subscription"
+              target="_blank"
+              >https://docs.pinksale.finance/subscription/create-a-subscription</a
+            ></app-popover
           >
         </button>
         <button
@@ -137,10 +150,15 @@
           [ngClass]="{ actived: stepTokenomics === 4 }"
           (click)="handleSetStepTokenomics(4)"
         >
-          FairLaunch
+          Fair Launch
           <app-popover
             [iconColor]="stepTokenomics === 4 ? 'var(--pink)' : 'var(--black)'"
-            >How to Create FairLaunch</app-popover
+            >How to Create FairLaunch
+            <a
+              href="https://docs.pinksale.finance/fair-launch/create-a-fair-launch"
+              target="_blank"
+              >https://docs.pinksale.finance/fair-launch/create-a-fair-launch</a
+            ></app-popover
           >
         </button>
       </nav>
@@ -150,33 +168,17 @@
       /></a>
 
       <footer>
-        <!--div class="export">
-          <button type="button" class="btn">
-            <img src="assets/img/Vector.svg" alt="" srcset="" />
-            Export -
-            {{
-              stepTokenomics === 1
-                ? "Presale"
-                : stepTokenomics === 2
-                ? "Presale WhiteList"
-                : stepTokenomics === 3
-                ? "Subscription"
-                : "FairLaunch"
-            }}
-          </button>
-        </div-->
-
         <div class="group-buttons">
           <button
             type="button"
-            (click)="handleSetTheme()"
+            (click)="handleSetTheme(false)"
             [ngClass]="{ 'actived-mode': !isDark }"
           >
             <img src="assets/img/light.svg" alt="light-mode" title="Light" />
           </button>
           <button
             type="button"
-            (click)="handleSetTheme()"
+            (click)="handleSetTheme(true)"
             [ngClass]="{ 'actived-mode': isDark }"
           >
             <img src="assets/img/dark.svg" alt="dark-mode" title="Dark" />

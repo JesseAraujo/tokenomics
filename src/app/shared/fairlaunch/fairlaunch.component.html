@@ -1,8 +1,26 @@
-<div class="title">
-  Presale
-  <div class="title-yellow">Details</div>
-</div>
+<div class="group-title">
+  <div class="title">
+    Presale
+    <div class="title-yellow">Details</div>
+  </div>
 
+  <div class="group-buttons-title">
+    <button
+      type="button"
+      [ngClass]="{ actived: is5Bnb }"
+      (click)="handleSetBnb(true)"
+    >
+      5% BNB
+    </button>
+    <button
+      type="button"
+      [ngClass]="{ actived: !is5Bnb }"
+      (click)="handleSetBnb(false)"
+    >
+      2% BNB + 2% TOKEN
+    </button>
+  </div>
+</div>
 <div class="content">
   <div class="group-inputs-views">
     <div class="group-input">

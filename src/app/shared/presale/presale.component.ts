@@ -205,8 +205,8 @@ export class PresaleComponent implements OnInit {
     return color;
   }
 
-  handleSetBnb() {
-    this.is5Bnb = !this.is5Bnb;
+  handleSetBnb(is5Bnb = false) {
+    this.is5Bnb = is5Bnb;
   }
 
   /////

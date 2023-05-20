@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   public isDark = false;
 
   ngOnInit() {
-    this.isDark = localStorage.getItem('Theme') === 'Dark';
+    this.isDark = localStorage.getItem('Theme') === 'Dark' || true;
 
     if (this.isDark) {
       const $html = document.querySelector('html');
@@ -22,15 +22,17 @@ export class AppComponent implements OnInit {
     this.stepTokenomics = step;
   }
 
-  handleSetTheme() {
-    this.isDark = !this.isDark;
-    const $html = document.querySelector('html');
-    $html?.classList.toggle('dark-mode');
+  handleSetTheme(isDark = false) {
+    if (isDark !== this.isDark) {
+      this.isDark = isDark;
+      const $html = document.querySelector('html');
+      $html?.classList.toggle('dark-mode');
 
-    if (this.isDark) {
-      localStorage.setItem('Theme', 'Dark');
-    } else {
-      localStorage.setItem('Theme', 'Light');
+      if (this.isDark) {
+        localStorage.setItem('Theme', 'Dark');
+      } else {
+        localStorage.setItem('Theme', 'Light');
+      }
     }
   }
 }

@@ -12,16 +12,16 @@
 
   &:hover {
     .popoverBody {
-      visibility: visible;
+      display: block;
     }
   }
 }
 
 .popoverBody {
   position: absolute;
-  visibility: hidden;
+  display: none;
   font-size: 0.83rem;
-  width: 300px;
+  width: 326px;
   background: var(--pink);
   padding: 15px;
   border-radius: 8px;
@@ -32,10 +32,6 @@
   z-index: 9;
   color: var(--white) !important;
   text-align: center;
-
-  a {
-    color: var(--white) !important;
-  }
 
   &:after {
     content: " ";

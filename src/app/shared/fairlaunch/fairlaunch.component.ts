@@ -18,13 +18,12 @@ export class FairLaunchComponent implements OnInit {
   public youWillUseHowManyTotalSupply = 0;
   public totalBnbOwnerWallet = 0;
   public totalBnbPancakeSwap = 0;
-
   public listTokenomics: any = [];
   public nameTokenomics: string = '';
   public valueTokenomics: any = null;
   public burnet = 0;
   public valueUnloked = 100;
-
+  public is5Bnb = true;
   public isWork = 0;
 
   ngOnInit() {
@@ -76,7 +75,7 @@ export class FairLaunchComponent implements OnInit {
     this.listTokenomics = [
       {
         Name: 'Presale',
-        Value: (this.fairLaunchRate / this.totalSupply) * 100 || 0.0,
+        Value: (this.fairLaunchRate / this.totalSupply) * 1000 || 0.0,
         IsEditable: false,
         Color: '#fd728f',
       },
@@ -183,6 +182,10 @@ export class FairLaunchComponent implements OnInit {
     }
 
     return color;
+  }
+
+  handleSetBnb(is5Bnb = false) {
+    this.is5Bnb = is5Bnb;
   }
 
   /////
