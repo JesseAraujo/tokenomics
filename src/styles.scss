@@ -1,13 +1,14 @@
 :root {
-  --white: #fcfcfc;
+  --white: #efefef;
   --black: #111111;
-  --gray-content: #f1f1f1;
-  --gray: #ececec;
+  --gray-content: #e9e8e8;
+  --gray: #d5d5d5;
   --yellow: #ffa100;
   --green: #2c7021;
   --red: #b6413d;
-  --pink: #f95192;
-  --pink-2: #fdeaf1;
+  --contrast: #f95192;
+  --color-button-actived: #971044;
+  --button-actived: #edc4d3;
 }
 .dark-mode:root {
   --white: #121212;
@@ -17,8 +18,9 @@
   --yellow: #ffa100;
   --green: #2c7021;
   --red: #b6413d;
-  --pink: #f95192;
-  --pink-2: #583844;
+  --contrast: #ffa100;
+  --color-button-actived: #1e1e1e;
+  --button-actived: #ffa100;
 }
 
 * {
@@ -50,7 +52,7 @@ input {
   border: none;
   border-bottom: 1px solid var(--black);
   background: none;
-  padding: 5px;
+  padding: 8px 5px;
 
   &:disabled {
     cursor: not-allowed;
@@ -82,12 +84,12 @@ button {
   align-items: center;
 
   img {
-    width: 20px;
+    width: 15px;
   }
 
   &.actived {
-    background: var(--pink-2);
-    color: var(--pink);
+    background: var(--button-actived);
+    color: var(--color-button-actived);
   }
 
   &:hover {
@@ -95,15 +97,20 @@ button {
   }
 }
 
+.container_main {
+  background: var(--white);
+  padding: 20px;
+}
+
 main {
   width: 100%;
   height: 100vh;
   overflow: auto;
-  padding: 30px 20px 30px 0;
 
   .group-title {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     .group-buttons-title {
       display: flex;
@@ -125,7 +132,7 @@ main {
 
     .title-yellow {
       font-size: 1.3rem;
-      color: var(--pink);
+      color: var(--contrast);
     }
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import { FunctionService } from 'src/services/function.service';
 
 @Component({
   selector: 'app-presale',
@@ -29,8 +30,9 @@ export class PresaleComponent implements OnInit {
   public valueUnloked = 100;
   public safuContract = false;
   public is5Bnb = true;
-
   public isWork = 0;
+
+  constructor(private functionService: FunctionService) {}
 
   ngOnInit() {
     this.setListTokenomics();
@@ -52,9 +54,13 @@ export class PresaleComponent implements OnInit {
 
       this.totalTokensForLiquidity =
         this.hardcap *
-        0.95 *
+        (this.is5Bnb ? 0.95 : 0.98) *
         this.listingRate *
         (this.liquidityPercentageOnPancake / 100);
+
+      if (!this.is5Bnb) {
+        this.tokenFee = this.presaleRate * this.hardcap * 0.02;
+      }
 
       this.calcTotalTokensNeeded();
     }
@@ -62,8 +68,8 @@ export class PresaleComponent implements OnInit {
 
   calcTotalTokensNeeded() {
     this.totalTokensNeeded =
-      1 * (this.presaleRate * this.hardcap) +
-      (0.95 *
+      (this.is5Bnb ? 1 : 1.02) * (this.presaleRate * this.hardcap) +
+      ((this.is5Bnb ? 0.95 : 0.98) *
         (this.listingRate * this.hardcap) *
         this.liquidityPercentageOnPancake) /
         100;
@@ -81,9 +87,13 @@ export class PresaleComponent implements OnInit {
 
   calcTotalBnb() {
     this.totalBnbOwnerWallet =
-      this.hardcap * (1 - this.liquidityPercentageOnPancake / 100) * 0.95;
+      this.hardcap *
+      (1 - this.liquidityPercentageOnPancake / 100) *
+      (this.is5Bnb ? 0.95 : 0.98);
     this.totalBnbPancakeSwap =
-      this.hardcap * (this.liquidityPercentageOnPancake / 100) * 0.95;
+      this.hardcap *
+      (this.liquidityPercentageOnPancake / 100) *
+      (this.is5Bnb ? 0.95 : 0.98);
   }
 
   setListTokenomics() {
@@ -96,7 +106,10 @@ export class PresaleComponent implements OnInit {
       },
       {
         Name: 'Liquidity',
-        Value: (this.totalTokensForLiquidity / this.totalSupply) * 100 || 0.0,
+        Value: this.is5Bnb
+          ? (this.totalTokensForLiquidity / this.totalSupply) * 100 || 0.0
+          : this.youWillUseHowManyTotalSupply -
+              (this.totalTokensForPresale / this.totalSupply) * 100 || 0.0,
         IsEditable: false,
         Color: '#039bfe',
       },
@@ -209,6 +222,13 @@ export class PresaleComponent implements OnInit {
 
   handleSetBnb(is5Bnb = false) {
     this.is5Bnb = is5Bnb;
+  }
+
+  handleDonwloadImage() {
+    this.functionService.donwloadImage(
+      'presale',
+      this.is5Bnb ? 'presale_5%_BNB' : 'presale_2%_BNB_+_2%_TOKEN'
+    );
   }
 
   /////
@@ -334,7 +354,7 @@ export class PresaleComponent implements OnInit {
         for (var i = 0; i < count; i++) {
           series.push({
             name: listTokenomics[i].Name,
-            y: listTokenomics[i].Value?.toFixed(4) * totalSupply,
+            y: (listTokenomics[i].Value * totalSupply) / 100,
             color: listTokenomics[i].Color,
           });
         }

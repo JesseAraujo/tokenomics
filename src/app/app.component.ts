@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   public isDark = false;
 
   ngOnInit() {
-    this.isDark = localStorage.getItem('Theme') === 'Dark' || true;
+    this.isDark = localStorage.getItem('Theme') === 'Dark';
 
     if (this.isDark) {
       const $html = document.querySelector('html');

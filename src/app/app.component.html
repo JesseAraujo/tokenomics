@@ -101,7 +101,11 @@
         >
           Presale
           <app-popover
-            [iconColor]="stepTokenomics === 1 ? 'var(--pink)' : 'var(--black)'"
+            [iconColor]="
+              stepTokenomics === 1
+                ? 'var(--color-button-actived)'
+                : 'var(--black)'
+            "
             >How to create PreSale -
             <a
               href="https://docs.pinksale.finance/launchpads/create-a-launchpad"
@@ -118,7 +122,11 @@
         >
           Presale WhiteList
           <app-popover
-            [iconColor]="stepTokenomics === 2 ? 'var(--pink)' : 'var(--black)'"
+            [iconColor]="
+              stepTokenomics === 2
+                ? 'var(--color-button-actived)'
+                : 'var(--black)'
+            "
             >How to Configure WhiteList
             <a
               href="https://docs.pinksale.finance/launchpads/add-remove-whitelists"
@@ -135,7 +143,11 @@
         >
           Subscription
           <app-popover
-            [iconColor]="stepTokenomics === 3 ? 'var(--pink)' : 'var(--black)'"
+            [iconColor]="
+              stepTokenomics === 3
+                ? 'var(--color-button-actived)'
+                : 'var(--black)'
+            "
             >How to Create Subscription
             <a
               href="https://docs.pinksale.finance/subscription/create-a-subscription"
@@ -163,8 +175,15 @@
         </button>
       </nav>
 
+      <a href="https://t.me/pinkmoonfinance" target="_blank">
+        <div class="help-desk">
+          <p>Contact us on our Telegram if you need help!</p>
+          <img src="assets/img/logos_telegram.svg" alt="" srcset="" />
+        </div>
+      </a>
+
       <a href="https://www.pinksale.finance/" target="_blank" class="logo-pink"
-        ><img src="assets/img/pinklogo.svg" alt="" srcset="" width="180"
+        ><img src="assets/img/pinklogo.svg" alt="" srcset="" width="170"
       /></a>
 
       <footer>
@@ -196,16 +215,6 @@
     <app-presale-whiteList *ngIf="stepTokenomics === 2"></app-presale-whiteList>
     <app-subscription *ngIf="stepTokenomics === 3"></app-subscription>
     <app-fairlaunch *ngIf="stepTokenomics === 4"></app-fairlaunch>
-
-    <div class="help-desk">
-      <a href="https://t.me/pinkmoonfinance" target="_blank"
-        ><img
-          src="assets/img/logos_telegram.svg"
-          alt=""
-          title="Contact us on our Telegram if you need help!"
-          srcset=""
-      /></a>
-    </div>
   </main>
 
   <footer>

@@ -14,15 +14,16 @@ import { PresaleWhiteListComponent } from './shared/presale-whiteList/presale-wh
 import { SubscriptionComponent } from './shared/subscription/subscription.component';
 import { FairLaunchComponent } from './shared/fairlaunch/fairlaunch.component';
 import { PopoverModule } from './shared/popover/popover.module';
+import { FunctionService } from 'src/services/function.service';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
-  align: 'right',
+  align: 'left',
   allowNegative: true,
-  decimal: ',',
+  decimal: '.',
   precision: 4,
   prefix: '',
   suffix: '',
-  thousands: '.',
+  thousands: ',',
 };
 
 @NgModule({
@@ -42,6 +43,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     PopoverModule,
   ],
   providers: [
+    FunctionService,
     {
       provide: CURRENCY_MASK_CONFIG,
       useValue: CustomCurrencyMaskConfig,

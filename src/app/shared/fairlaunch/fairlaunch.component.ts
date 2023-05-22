@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import { FunctionService } from 'src/services/function.service';
 
 @Component({
   selector: 'app-fairlaunch',
@@ -25,6 +26,8 @@ export class FairLaunchComponent implements OnInit {
   public valueUnloked = 100;
   public is5Bnb = true;
   public isWork = 0;
+
+  constructor(private functionService: FunctionService) {}
 
   ngOnInit() {
     this.setListTokenomics();
@@ -186,6 +189,10 @@ export class FairLaunchComponent implements OnInit {
 
   handleSetBnb(is5Bnb = false) {
     this.is5Bnb = is5Bnb;
+  }
+
+  handleDonwloadImage() {
+    this.functionService.donwloadImage('fairlaunch', 'fairlaunch_5%_BNB');
   }
 
   /////

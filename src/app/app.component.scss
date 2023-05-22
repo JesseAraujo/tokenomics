@@ -23,7 +23,7 @@ aside {
       gap: 10px;
     }
 
-    .logo-pink {
+    .logo-contrast {
       position: absolute;
       bottom: 100px;
     }
@@ -38,7 +38,7 @@ aside {
 
       .export {
         button {
-          background: var(--pink);
+          background: var(--contrast);
           color: var(--white);
           font-size: 0.8rem;
           padding: 10px;
@@ -78,12 +78,21 @@ footer {
 }
 
 .help-desk {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
+  width: 220px;
+  margin: 20px 0;
+  padding: 20px 12px;
+  display: flex;
+  gap: 10px;
+  border-radius: 8px;
+  align-items: center;
+
+  p {
+    font-size: 0.8rem;
+  }
 
   img {
-    width: 60px;
+    width: 25px;
+    margin-top: 5px;
   }
 }
 
@@ -91,7 +100,7 @@ footer {
   font-size: 0.8rem;
   margin: 20px 0;
   text-align: center;
-  color: var(--pink);
+  color: var(--contrast);
 }
 
 .group-buttons {
@@ -107,8 +116,8 @@ footer {
     }
 
     &.actived-mode {
-      background: var(--pink-2);
-      border: 1px solid var(--pink) !important;
+      background: var(--contrast-2);
+      border: 1px solid var(--contrast) !important;
     }
   }
 }
@@ -161,12 +170,12 @@ footer {
     gap: 10px;
     padding: 20px;
     align-items: center;
-    background: var(--pink-2);
+    background: var(--contrast-2);
     margin-top: -30px;
 
     .by {
       font-size: 0.7rem;
-      color: var(--pink);
+      color: var(--contrast);
     }
   }
 }
