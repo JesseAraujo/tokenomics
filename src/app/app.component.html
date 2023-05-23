@@ -3,31 +3,37 @@
     <div class="group-logo">
       <a href="http://stevelabs.io/services" target="_blank"
         ><img
-          src="assets/img/logo.svg"
+          loading="lazy"
+          src="assets/img/{{ isDark ? 'logo-white' : 'logo' }}.svg"
           alt="Logo Stevelabs"
           width="130"
-          *ngIf="!isDark" />
-        <img
-          src="assets/img/logo-white.svg"
-          alt="Logo Stevelabs"
-          width="130"
-          *ngIf="isDark"
-      /></a>
+        />
+      </a>
 
       <div class="group-buttons">
         <button
           type="button"
-          (click)="handleSetTheme()"
+          (click)="handleSetTheme(false)"
           [ngClass]="{ 'actived-mode': !isDark }"
         >
-          <img src="assets/img/light.svg" alt="light-mode" title="Light" />
+          <img
+            src="assets/img/light.svg"
+            alt="light-mode"
+            title="Light"
+            loading="lazy"
+          />
         </button>
         <button
           type="button"
-          (click)="handleSetTheme()"
+          (click)="handleSetTheme(true)"
           [ngClass]="{ 'actived-mode': isDark }"
         >
-          <img src="assets/img/dark.svg" alt="dark-mode" title="Dark" />
+          <img
+            src="assets/img/dark.svg"
+            alt="dark-mode"
+            title="Dark"
+            loading="lazy"
+          />
         </button>
       </div>
     </div>
@@ -76,16 +82,12 @@
   <aside>
     <a href="http://stevelabs.io/services" target="_blank"
       ><img
-        src="assets/img/logo.svg"
+        loading="lazy"
+        src="assets/img/{{ isDark ? 'logo-white' : 'logo' }}.svg"
         alt="Logo Stevelabs"
         width="130"
-        *ngIf="!isDark" />
-      <img
-        src="assets/img/logo-white.svg"
-        alt="Logo Stevelabs"
-        width="130"
-        *ngIf="isDark"
-    /></a>
+      />
+    </a>
 
     <div class="group-aside">
       <div class="text-1">
@@ -164,7 +166,11 @@
         >
           Fair Launch
           <app-popover
-            [iconColor]="stepTokenomics === 4 ? 'var(--pink)' : 'var(--black)'"
+            [iconColor]="
+              stepTokenomics === 4
+                ? 'var(--color-button-actived)'
+                : 'var(--black)'
+            "
             >How to Create FairLaunch
             <a
               href="https://docs.pinksale.finance/fair-launch/create-a-fair-launch"
@@ -178,33 +184,73 @@
       <a href="https://t.me/pinkmoonfinance" target="_blank">
         <div class="help-desk">
           <p>Contact us on our Telegram if you need help!</p>
-          <img src="assets/img/logos_telegram.svg" alt="" srcset="" />
+          <img
+            src="assets/img/logos_telegram.svg"
+            alt=""
+            srcset=""
+            loading="lazy"
+          />
         </div>
       </a>
 
       <a href="https://www.pinksale.finance/" target="_blank" class="logo-pink"
-        ><img src="assets/img/pinklogo.svg" alt="" srcset="" width="170"
+        ><img
+          src="assets/img/pinklogo.svg"
+          alt="PinkSale"
+          title="PinkSale"
+          width="170"
+          loading="lazy"
       /></a>
 
       <footer>
-        <div class="group-buttons">
-          <button
-            type="button"
-            (click)="handleSetTheme(false)"
-            [ngClass]="{ 'actived-mode': !isDark }"
-          >
-            <img src="assets/img/light.svg" alt="light-mode" title="Light" />
-          </button>
-          <button
-            type="button"
-            (click)="handleSetTheme(true)"
-            [ngClass]="{ 'actived-mode': isDark }"
-          >
-            <img src="assets/img/dark.svg" alt="dark-mode" title="Dark" />
-          </button>
+        <div class="group-footer">
+          <div class="group-buttons">
+            <button
+              type="button"
+              (click)="handleSetTheme(false)"
+              [ngClass]="{ 'actived-mode': !isDark }"
+            >
+              <img
+                src="assets/img/light.svg"
+                alt="light-mode"
+                title="Light"
+                loading="lazy"
+              />
+            </button>
+            <button
+              type="button"
+              (click)="handleSetTheme(true)"
+              [ngClass]="{ 'actived-mode': isDark }"
+            >
+              <img
+                src="assets/img/dark.svg"
+                alt="dark-mode"
+                title="Dark"
+                loading="lazy"
+              />
+            </button>
+          </div>
+
+          <a
+            href="https://www.instagram.com/stevelabsaccelerator/"
+            target="_blank"
+            ><img
+              src="assets/img/instagram.svg"
+              alt="@stevelabsaccelerator"
+              width="25px"
+              loading="lazy"
+              title="@stevelabsaccelerator"
+          /></a>
         </div>
 
-        <div class="by">Developed by Jessé Brisola</div>
+        <div class="by">
+          Developed by
+          <a
+            href="https://www.linkedin.com/in/jesse-brisola-de-araujo/"
+            target="_blank"
+            >Jessé Brisola</a
+          >
+        </div>
       </footer>
     </div>
   </aside>
@@ -219,9 +265,21 @@
 
   <footer>
     <a href="https://www.pinksale.finance/" target="_blank"
-      ><img src="assets/img/pinklogo.svg" alt="" srcset="" width="200"
+      ><img
+        src="assets/img/pinklogo.svg"
+        alt=""
+        srcset=""
+        width="200"
+        loading="lazy"
     /></a>
 
-    <div class="by">Developed by Jessé Brisola</div>
+    <div class="by">
+      Developed by
+      <a
+        href="https://www.linkedin.com/in/jesse-brisola-de-araujo/"
+        target="_blank"
+        >Jessé Brisola</a
+      >
+    </div>
   </footer>
 </div>

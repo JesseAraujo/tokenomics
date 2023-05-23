@@ -53,6 +53,7 @@ input {
   border-bottom: 1px solid var(--black);
   background: none;
   padding: 8px 5px;
+  font-size: 0.9rem;
 
   &:disabled {
     cursor: not-allowed;
@@ -84,7 +85,7 @@ button {
   align-items: center;
 
   img {
-    width: 15px;
+    width: 25px;
   }
 
   &.actived {
@@ -98,14 +99,46 @@ button {
 }
 
 .container_main {
-  background: var(--white);
+  background-color: var(--white);
   padding: 20px;
+  position: absolute;
+  top: 9999px;
+}
+
+.logo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--contrast);
+  margin-bottom: 20px;
+}
+
+.group-footer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 1.3rem;
+  display: flex;
+  gap: 5px;
+  font-weight: 600;
+
+  .title-yellow {
+    font-size: 1.3rem;
+    color: var(--contrast);
+  }
 }
 
 main {
   width: 100%;
   height: 100vh;
   overflow: auto;
+  padding: 20px;
 
   .group-title {
     display: flex;
@@ -121,18 +154,6 @@ main {
         padding: 10px;
         font-size: 0.7rem !important;
       }
-    }
-  }
-
-  .title {
-    font-size: 1.3rem;
-    display: flex;
-    gap: 5px;
-    font-weight: 600;
-
-    .title-yellow {
-      font-size: 1.3rem;
-      color: var(--contrast);
     }
   }
 
@@ -289,6 +310,27 @@ main {
       border: none;
     }
   }
+}
+
+.name-pie {
+  font-size: 0.6rem !important;
+  stroke-width: 1px;
+  font-weight: 500;
+}
+
+.value-pie {
+  font-size: 0.8rem !important;
+  stroke-width: 1px !important;
+}
+
+.value-chart {
+  color: var(--contrast);
+  fill: var(--contrast);
+  font-weight: 500;
+}
+
+.highcharts-text-outline {
+  display: none;
 }
 
 @media (max-width: 1204px) {

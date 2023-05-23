@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import { Subscription } from 'rxjs';
 import { FunctionService } from 'src/services/function.service';
 
 @Component({
@@ -26,26 +27,46 @@ export class FairLaunchComponent implements OnInit {
   public valueUnloked = 100;
   public is5Bnb = true;
   public isWork = 0;
+  public safuContract = false;
+  public isDark = false;
+  public subscription: Subscription[] = [];
 
   constructor(private functionService: FunctionService) {}
 
   ngOnInit() {
     this.setListTokenomics();
+
+    this.isDark = localStorage.getItem('Theme') === 'Dark';
+
+    this.subscription.push(
+      this.functionService.theme$.subscribe((ret) => {
+        this.isDark = ret === 'Dark';
+      })
+    );
   }
 
   handleCalcFairLaunchRate() {
     if (this.softCap) {
       this.fairLaunchRate = this.totalTokensForFairLaunch / this.softCap;
     }
+
+    this.handleCalcTotalTokensForLiquidity();
   }
 
   handleCalcTotalTokensForLiquidity() {
-    this.totalTokensForLiquidity =
-      this.totalTokensForFairLaunch *
-      0.95 *
-      (this.liquidityPercentageOnPancake / 100);
+    if (this.totalSupply) {
+      if (this.safuContract && this.liquidityPercentageOnPancake < 60) {
+        alert('Error: Allowed value greater than or equal to 60');
+        this.liquidityPercentageOnPancake = 60;
+        return;
+      }
+      this.totalTokensForLiquidity =
+        this.totalTokensForFairLaunch *
+        0.95 *
+        (this.liquidityPercentageOnPancake / 100);
 
-    this.calcTotalTokensNeeded();
+      this.calcTotalTokensNeeded();
+    }
   }
 
   calcTotalTokensNeeded() {
@@ -131,11 +152,19 @@ export class FairLaunchComponent implements OnInit {
     } else {
       let message =
         'Error: Informed value exceeds total allowed. There is only ' +
-        this.valueUnloked.toFixed(4) +
+        this.valueUnloked.toFixed(2) +
         '% available to distribute';
       alert(message);
       this.valueTokenomics = null;
     }
+  }
+
+  handleSelectSafuContract() {
+    if (!this.safuContract) {
+      this.liquidityPercentageOnPancake = 60;
+    }
+
+    this.handleCalcTotalTokensForLiquidity();
   }
 
   handleSetValue(tokenomics, value) {
@@ -166,7 +195,7 @@ export class FairLaunchComponent implements OnInit {
       this.listTokenomics[2].Value = 0;
       let message =
         'Error: Informed value exceeds total allowed. There is only ' +
-        this.valueUnloked.toFixed(4) +
+        this.valueUnloked.toFixed(2) +
         '% available to distribute';
       alert(message);
       return this.getTotalUnloked();
@@ -189,6 +218,8 @@ export class FairLaunchComponent implements OnInit {
 
   handleSetBnb(is5Bnb = false) {
     this.is5Bnb = is5Bnb;
+
+    this.handleCalcTotalTokensForLiquidity();
   }
 
   handleDonwloadImage() {
@@ -197,6 +228,7 @@ export class FairLaunchComponent implements OnInit {
 
   /////
   chartTotalSupplyPercentage(listTokenomics) {
+    this.chartTotalSupplyPercentageToExport(listTokenomics);
     let count = listTokenomics.length;
 
     Highcharts.chart('chartTotalSupplyPercentage', {
@@ -213,7 +245,7 @@ export class FairLaunchComponent implements OnInit {
           const index = this.point.index;
           const ret = `
           <b>${this.point.name}</b><br>
-          ${this.point.y?.toFixed(4)}%  <br>
+          ${this.point.y?.toFixed(2)}%  <br>
           `;
 
           return ret;
@@ -229,7 +261,15 @@ export class FairLaunchComponent implements OnInit {
           allowPointSelect: true,
           cursor: 'pointer',
           dataLabels: {
-            enabled: false,
+            enabled: true,
+            format:
+              '<div class="name-pie">{point.name}</div><br><div class="value-pie">{point.percentage:.2f} %</div>',
+            distance: -50,
+            filter: {
+              property: 'percentage',
+              operator: '>',
+              value: 4,
+            },
           },
         },
       },
@@ -260,6 +300,8 @@ export class FairLaunchComponent implements OnInit {
   }
 
   chartInToken(listTokenomics) {
+    this.chartInTokenToExport(listTokenomics);
+
     let count = listTokenomics.length;
     let totalSupply = this.totalSupply;
 
@@ -291,18 +333,25 @@ export class FairLaunchComponent implements OnInit {
           const index = this.point.index;
           const ret = `
           <b>${this.point.name}</b><br>
-          ${this.point.y?.toLocaleString('pt-BR')} <br>
+          ${this.point.y?.toLocaleString('ng-US')} <br>
           `;
 
           return ret;
         },
       },
       plotOptions: {
-        pie: {
-          allowPointSelect: true,
-          cursor: 'pointer',
+        series: {
+          borderWidth: 0,
           dataLabels: {
-            enabled: false,
+            enabled: true,
+            formatter: function () {
+              const index = this.point.index;
+              const ret = ` <div class="value-chart">
+              ${this.point.y?.toLocaleString('ng-US')}</div>
+              `;
+
+              return ret;
+            },
           },
         },
       },
@@ -318,7 +367,159 @@ export class FairLaunchComponent implements OnInit {
         for (var i = 0; i < count; i++) {
           series.push({
             name: listTokenomics[i].Name,
-            y: listTokenomics[i].Value?.toFixed(4) * totalSupply,
+            y: listTokenomics[i].Value?.toFixed(2) * totalSupply,
+            color: listTokenomics[i].Color,
+          });
+        }
+
+        data.push({
+          data: series,
+        });
+
+        return data;
+      })(),
+    });
+  }
+
+  /////
+  chartTotalSupplyPercentageToExport(listTokenomics) {
+    let count = listTokenomics.length;
+
+    Highcharts.chart('chartTotalSupplyPercentageToExport', {
+      chart: {
+        type: 'pie',
+        height: 300,
+        backgroundColor: '#00000000',
+      },
+      title: {
+        text: '',
+      },
+      tooltip: {
+        formatter: function () {
+          const index = this.point.index;
+          const ret = `
+            <b>${this.point.name}</b><br>
+            ${this.point.y?.toFixed(2)}%  <br>
+            `;
+
+          return ret;
+        },
+      },
+      accessibility: {
+        point: {
+          valueSuffix: '%',
+        },
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            format:
+              '<div class="name-pie">{point.name}</div><br><div class="value-pie">{point.percentage:.2f} %</div>',
+            distance: -50,
+            filter: {
+              property: 'percentage',
+              operator: '>',
+              value: 4,
+            },
+          },
+        },
+      },
+      credits: {
+        enabled: false,
+      },
+      legend: {
+        enabled: false,
+      },
+      series: (function () {
+        var series: any = [];
+        var data: any = [];
+        for (var i = 0; i < count; i++) {
+          series.push({
+            name: listTokenomics[i].Name,
+            y: listTokenomics[i].Value,
+            color: listTokenomics[i].Color,
+          });
+        }
+
+        data.push({
+          data: series,
+        });
+
+        return data;
+      })(),
+    });
+  }
+
+  chartInTokenToExport(listTokenomics) {
+    let count = listTokenomics.length;
+    let totalSupply = this.totalSupply;
+
+    let valueCategories: any = [];
+    listTokenomics.forEach((element) => {
+      valueCategories.push(element.Name);
+    });
+
+    Highcharts.chart('chartInTokenToExport', {
+      chart: {
+        type: 'column',
+        height: 300,
+        backgroundColor: '#00000000',
+      },
+      title: {
+        text: '',
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: '',
+        },
+      },
+      xAxis: {
+        categories: valueCategories,
+      },
+      tooltip: {
+        formatter: function () {
+          const index = this.point.index;
+          const ret = `
+            <b>${this.point.name}</b><br>
+            ${this.point.y?.toLocaleString('ng-US')} <br>
+            `;
+
+          return ret;
+        },
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            formatter: function () {
+              const index = this.point.index;
+              const ret = ` <div class="value-chart">
+                ${this.point.y?.toLocaleString('ng-US')}</div>
+                `;
+
+              return ret;
+            },
+          },
+        },
+      },
+      credits: {
+        enabled: false,
+      },
+      legend: {
+        enabled: false,
+      },
+      series: (function () {
+        var series: any = [];
+        var data: any = [];
+        for (var i = 0; i < count; i++) {
+          series.push({
+            name: listTokenomics[i].Name,
+            y: listTokenomics[i].Value?.toFixed(2) * totalSupply,
             color: listTokenomics[i].Color,
           });
         }

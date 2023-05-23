@@ -1,20 +1,306 @@
+<div class="group-title">
+  <div class="title">
+    Presale
+    <div class="title-yellow">Details</div>
+  </div>
+
+  <div class="group-buttons-title">
+    <button
+      type="button"
+      (click)="handleDonwloadImage()"
+      title="Export screen in image"
+    >
+      <img src="assets/img/{{ isDark ? 'save-dark' : 'save' }}.svg" alt="" />
+    </button>
+  </div>
+</div>
+<div class="content">
+  <div class="group-inputs-views">
+    <div class="group-input">
+      <div class="input">
+        <p>
+          Total Supply
+          <app-popover>Total circulating tokens for your project</app-popover>
+        </p>
+        <input
+          OnlyNumbers
+          type="text"
+          inputmode="numeric"
+          [(ngModel)]="totalSupply"
+          placeholder="000,000,000"
+          (blur)="handleCalcTotalTokensForLiquidity()"
+          currencyMask
+          [options]="{ precision: 0, decimal: '', align: 'left' }"
+        />
+      </div>
+      <div class="input">
+        <p>
+          Total Tokens for Fair Launch
+          <app-popover
+            >How many tokens do you want to put up for sale at fair
+            launch?</app-popover
+          >
+        </p>
+        <input
+          OnlyNumbers
+          type="text"
+          inputmode="numeric"
+          [(ngModel)]="totalTokensForFairLaunch"
+          placeholder="000,000,000"
+          (blur)="handleCalcFairLaunchRate()"
+          currencyMask
+          [options]="{ precision: 0, decimal: '', align: 'left' }"
+        />
+      </div>
+      <div class="input">
+        <p>
+          SoftCap
+          <app-popover
+            >Minimum value of bnb filled to develop your project</app-popover
+          >
+        </p>
+        <input
+          OnlyNumbers
+          type="text"
+          inputmode="numeric"
+          [(ngModel)]="softCap"
+          placeholder="000,000,000"
+          (blur)="handleCalcFairLaunchRate()"
+          currencyMask
+          [options]="{ precision: 0, decimal: '', align: 'left' }"
+        />
+      </div>
+    </div>
+    <div class="group-views">
+      <div class="total">
+        <p>Total Tokens for Presale</p>
+        <div class="value">
+          {{ fairLaunchRate.toLocaleString("en-US") }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="group-inputs-views">
+    <div class="group-input-checkbox">
+      <div class="input-checkbox">
+        <input
+          type="checkbox"
+          id="safuContract"
+          [(ngModel)]="safuContract"
+          (click)="handleSelectSafuContract()"
+        />
+        <p for="safuContract">
+          Safu Contract
+          <app-popover
+            >Criteria of SAFU Project -
+            <a
+              href="https://docs.pinksale.finance/important/safu-contract#safu-developers"
+              target="_blank"
+              >https://docs.pinksale.finance/important/safu-contract#safu-developers</a
+            ></app-popover
+          >
+        </p>
+      </div>
+      <div class="group-input">
+        <div class="input">
+          <p>
+            Liquidity Percent %
+            <app-popover
+              >Percentage of Bnb's filled that will be added to
+              liquidity</app-popover
+            >
+          </p>
+          <input
+            type="text"
+            inputmode="numeric"
+            [(ngModel)]="liquidityPercentageOnPancake"
+            placeholder="0.00"
+            (blur)="handleCalcTotalTokensForLiquidity()"
+            currencyMask
+          />
+        </div>
+      </div>
+    </div>
+    <div class="group-views">
+      <div class="total">
+        <p>Total Tokens for Liquidity</p>
+        <div class="value">
+          {{ totalTokensForLiquidity.toLocaleString("en-US") }}
+        </div>
+      </div>
+      <div class="total">
+        <p>Token fee</p>
+        <div class="value">{{ tokenFee.toLocaleString("en-US") }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div class="group-total-need">
+    <img src="assets/img/token.svg" alt="" />
+
+    <div class="total-need">
+      Total tokens needed to create a PinkSale pool
+
+      <div class="value-total-need">
+        {{ totalTokensNeeded.toLocaleString("en-US") }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="group-content">
+  <div class="content">
+    <div class="group-inputs-views">
+      <div class="group-views">
+        <div class="total">
+          <p>Check if it works or not</p>
+          <div class="value-text" [ngClass]="isWork > 0 ? 'yes' : 'no'">
+            {{ isWork > 0 ? "It Works" : "This doesnt work..." }}
+          </div>
+        </div>
+        <div class="total">
+          <p>You will use how many % of the total supply</p>
+          <div class="value">
+            {{ youWillUseHowManyTotalSupply | number : "1.2-2" }}%
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="group-inputs-views">
+      <div class="group-views">
+        <div class="total">
+          <p>Total BNB you'll get to your owner wallet</p>
+          <div class="value">
+            {{ totalBnbOwnerWallet | number : "1.2-2" }}
+          </div>
+        </div>
+        <div class="total">
+          <p>Total BNB will be listed on PancakeSwap</p>
+          <div class="value">
+            {{ totalBnbPancakeSwap | number : "1.2-2" }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="title" style="margin-top: 10px">
+  Tokenomics
+  <div class="title-yellow">Metrics</div>
+</div>
+
+<div class="group-content">
+  <div>
+    <div class="content">
+      <div class="group-new-tokenomics">
+        <div class="input">
+          <p>Name</p>
+          <input
+            type="text"
+            [(ngModel)]="nameTokenomics"
+            placeholder="Name Tokenomics"
+          />
+        </div>
+        <div class="input">
+          <p>Value %</p>
+          <input
+            currencyMask
+            type="text"
+            inputmode="numeric"
+            [(ngModel)]="valueTokenomics"
+            placeholder="0.00"
+          />
+        </div>
+        <button
+          type="button"
+          class="btn-add"
+          [ngClass]="{
+            disabled:
+              !nameTokenomics || !valueTokenomics || valueTokenomics === 0
+          }"
+          (click)="handleSetNewTokenomics(nameTokenomics, valueTokenomics)"
+          [disabled]="
+            !nameTokenomics || !valueTokenomics || valueTokenomics === 0
+          "
+        >
+          <img src="assets/img/more.svg" alt="" srcset="" />
+        </button>
+      </div>
+    </div>
+
+    <div class="list-tokenomics" *ngFor="let item of listTokenomics">
+      <div
+        class="color"
+        style="height: 20px; width: 20px"
+        [style.backgroundColor]="item.Color"
+      ></div>
+      <div class="name">{{ item.Name }}</div>
+      <div class="value" *ngIf="!item.IsEditable">
+        {{ item.Value | number : "1.2-2" }}%
+      </div>
+      <div class="value" *ngIf="item.IsEditable">
+        <div class="input">
+          <input
+            currencyMask
+            [options]="{ align: 'right' }"
+            type="text"
+            inputmode="numeric"
+            [(ngModel)]="item.Value"
+            (blur)="handleSetValue(item, item.Value)"
+            placeholder="0.00"
+            [disabled]="
+              !liquidityPercentageOnPancake ||
+              liquidityPercentageOnPancake === 0
+            "
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="group-chart">
+      In % of total supply
+      <div id="chartTotalSupplyPercentage" style="margin: 0 auto"></div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="group-chart">
+      In Token
+      <div id="chartInToken" style="margin: 0 auto"></div>
+    </div>
+  </div>
+</div>
+
+<!--to-export----->
 <div id="fairlaunch" class="container_main">
+  <div class="logo">
+    <img
+      src="assets/img/{{ isDark ? 'logo-white' : 'logo' }}.svg"
+      alt="Logo Stevelabs"
+      width="200"
+    />
+
+    <div class="title">
+      Fair Launch -
+      <div class="title-yellow">
+        {{ is5Bnb ? " 5% BNB" : " 2% BNB + 2% TOKEN" }}
+      </div>
+    </div>
+  </div>
+
   <div class="group-title">
     <div class="title">
       Presale
       <div class="title-yellow">Details</div>
     </div>
-
-    <div class="group-buttons-title">
-      <button
-        type="button"
-        (click)="handleDonwloadImage()"
-        title="Export screen in image"
-      >
-        <img src="assets/img/export.svg" alt="" width="20px" />
-      </button>
-    </div>
   </div>
+
   <div class="content">
     <div class="group-inputs-views">
       <div class="group-input">
@@ -28,7 +314,7 @@
             type="text"
             inputmode="numeric"
             [(ngModel)]="totalSupply"
-            placeholder="000.000.000"
+            placeholder="000,000,000"
             (blur)="handleCalcTotalTokensForLiquidity()"
             currencyMask
             [options]="{ precision: 0, decimal: '', align: 'left' }"
@@ -47,7 +333,7 @@
             type="text"
             inputmode="numeric"
             [(ngModel)]="totalTokensForFairLaunch"
-            placeholder="0.000"
+            placeholder="000,000,000"
             (blur)="handleCalcFairLaunchRate()"
             currencyMask
             [options]="{ precision: 0, decimal: '', align: 'left' }"
@@ -65,7 +351,7 @@
             type="text"
             inputmode="numeric"
             [(ngModel)]="softCap"
-            placeholder="000.000.000"
+            placeholder="000,000,000"
             (blur)="handleCalcFairLaunchRate()"
             currencyMask
             [options]="{ precision: 0, decimal: '', align: 'left' }"
@@ -76,43 +362,62 @@
         <div class="total">
           <p>Total Tokens for Presale</p>
           <div class="value">
-            {{ fairLaunchRate.toLocaleString("pt-BR") }}
+            {{ fairLaunchRate.toLocaleString("en-US") }}
           </div>
         </div>
       </div>
     </div>
     <div class="group-inputs-views">
-      <div class="group-input">
-        <div class="input">
-          <p>
-            Liquidity Percent
+      <div class="group-input-checkbox">
+        <div class="input-checkbox">
+          <input
+            type="checkbox"
+            id="safuContract"
+            [(ngModel)]="safuContract"
+            (click)="handleSelectSafuContract()"
+          />
+          <p for="safuContract">
+            Safu Contract
             <app-popover
-              >Percentage of Bnb's filled that will be added to
-              liquidity</app-popover
+              >Criteria of SAFU Project -
+              <a
+                href="https://docs.pinksale.finance/important/safu-contract#safu-developers"
+                target="_blank"
+                >https://docs.pinksale.finance/important/safu-contract#safu-developers</a
+              ></app-popover
             >
           </p>
-          <input
-            type="text"
-            OnlyNumbers
-            inputmode="numeric"
-            [(ngModel)]="liquidityPercentageOnPancake"
-            placeholder="00"
-            (blur)="handleCalcTotalTokensForLiquidity()"
-            currencyMask
-            [options]="{ precision: 0, decimal: '', align: 'left' }"
-          />
+        </div>
+        <div class="group-input">
+          <div class="input">
+            <p>
+              Liquidity Percent %
+              <app-popover
+                >Percentage of Bnb's filled that will be added to
+                liquidity</app-popover
+              >
+            </p>
+            <input
+              type="text"
+              inputmode="numeric"
+              [(ngModel)]="liquidityPercentageOnPancake"
+              placeholder="0.00"
+              (blur)="handleCalcTotalTokensForLiquidity()"
+              currencyMask
+            />
+          </div>
         </div>
       </div>
       <div class="group-views">
         <div class="total">
           <p>Total Tokens for Liquidity</p>
           <div class="value">
-            {{ totalTokensForLiquidity.toLocaleString("pt-BR") }}
+            {{ totalTokensForLiquidity.toLocaleString("en-US") }}
           </div>
         </div>
         <div class="total">
           <p>Token fee</p>
-          <div class="value">{{ tokenFee.toLocaleString("pt-BR") }}</div>
+          <div class="value">{{ tokenFee.toLocaleString("en-US") }}</div>
         </div>
       </div>
     </div>
@@ -125,7 +430,7 @@
         Total tokens needed to create a PinkSale pool
 
         <div class="value-total-need">
-          {{ totalTokensNeeded.toLocaleString("pt-BR") }}
+          {{ totalTokensNeeded.toLocaleString("en-US") }}
         </div>
       </div>
     </div>
@@ -144,7 +449,7 @@
           <div class="total">
             <p>You will use how many % of the total supply</p>
             <div class="value">
-              {{ youWillUseHowManyTotalSupply | number : "1.4-4" }}%
+              {{ youWillUseHowManyTotalSupply | number : "1.2-2" }}%
             </div>
           </div>
         </div>
@@ -156,13 +461,13 @@
           <div class="total">
             <p>Total BNB you'll get to your owner wallet</p>
             <div class="value">
-              {{ totalBnbOwnerWallet | number : "1.4-4" }}
+              {{ totalBnbOwnerWallet | number : "1.2-2" }}
             </div>
           </div>
           <div class="total">
             <p>Total BNB will be listed on PancakeSwap</p>
             <div class="value">
-              {{ totalBnbPancakeSwap | number : "1.4-4" }}
+              {{ totalBnbPancakeSwap | number : "1.2-2" }}
             </div>
           </div>
         </div>
@@ -194,7 +499,7 @@
               type="text"
               inputmode="numeric"
               [(ngModel)]="valueTokenomics"
-              placeholder="0.0000"
+              placeholder="0.00"
             />
           </div>
           <button
@@ -222,17 +527,18 @@
         ></div>
         <div class="name">{{ item.Name }}</div>
         <div class="value" *ngIf="!item.IsEditable">
-          {{ item.Value | number : "1.4-4" }}%
+          {{ item.Value | number : "1.2-2" }}%
         </div>
         <div class="value" *ngIf="item.IsEditable">
           <div class="input">
             <input
               currencyMask
+              [options]="{ align: 'right' }"
               type="text"
               inputmode="numeric"
               [(ngModel)]="item.Value"
               (blur)="handleSetValue(item, item.Value)"
-              placeholder="0.0000"
+              placeholder="0.00"
               [disabled]="
                 !liquidityPercentageOnPancake ||
                 liquidityPercentageOnPancake === 0
@@ -246,14 +552,17 @@
     <div class="content">
       <div class="group-chart">
         In % of total supply
-        <div id="chartTotalSupplyPercentage" style="margin: 0 auto"></div>
+        <div
+          id="chartTotalSupplyPercentageToExport"
+          style="margin: 0 auto"
+        ></div>
       </div>
     </div>
 
     <div class="content">
       <div class="group-chart">
         In Token
-        <div id="chartInToken" style="margin: 0 auto"></div>
+        <div id="chartInTokenToExport" style="margin: 0 auto"></div>
       </div>
     </div>
   </div>

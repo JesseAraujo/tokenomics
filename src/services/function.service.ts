@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import html2canvas from 'html2canvas';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable()
 export class FunctionService {
-  constructor() {}
+  private theme = new Subject();
+  public theme$ = this.theme.asObservable();
 
   donwloadImage(id: string, name: string) {
     const containerFile = document.getElementById(id)!;
@@ -17,5 +19,9 @@ export class FunctionService {
       img.target = '_blank';
       img.click();
     });
+  }
+
+  themeObservable() {
+    this.theme.next(localStorage.getItem('Theme')!);
   }
 }
