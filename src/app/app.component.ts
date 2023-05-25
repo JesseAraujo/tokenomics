@@ -17,6 +17,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.isDark = localStorage.getItem('Theme') === 'Dark';
+    const video = <HTMLVideoElement>document.getElementById('idVideo');
+    video?.play();
 
     if (this.isDark) {
       const $html = document.querySelector('html');

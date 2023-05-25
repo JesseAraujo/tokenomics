@@ -6,7 +6,7 @@ import { FunctionService } from 'src/services/function.service';
 @Component({
   selector: 'app-fairlaunch',
   templateUrl: './fairlaunch.component.html',
-  styleUrls: ['../../app.component.scss', './fairlaunch.component.scss'],
+  styleUrls: ['../../app.component.scss'],
 })
 export class FairLaunchComponent implements OnInit {
   public totalSupply: any = null;
@@ -23,7 +23,7 @@ export class FairLaunchComponent implements OnInit {
   public listTokenomics: any = [];
   public nameTokenomics: string = '';
   public valueTokenomics: any = null;
-  public burnet = 0;
+  public Burned = 0;
   public valueUnloked = 100;
   public is5Bnb = true;
   public isWork = 0;
@@ -63,7 +63,10 @@ export class FairLaunchComponent implements OnInit {
         return;
       }
 
-      if (this.liquidityPercentageOnPancake < 51) {
+      if (
+        this.liquidityPercentageOnPancake &&
+        this.liquidityPercentageOnPancake < 51
+      ) {
         alert(
           'Error: Liquidity Percent % - Allowed value greater than or equal to 51'
         );
@@ -73,7 +76,7 @@ export class FairLaunchComponent implements OnInit {
 
       this.totalTokensForLiquidity =
         this.totalTokensForFairLaunch *
-        0.95 *
+        (this.is5Bnb ? 0.95 : 0.98) *
         (this.liquidityPercentageOnPancake / 100);
 
       this.calcTotalTokensNeeded();
@@ -82,8 +85,8 @@ export class FairLaunchComponent implements OnInit {
 
   calcTotalTokensNeeded() {
     this.totalTokensNeeded =
-      1 * (this.fairLaunchRate * this.softCap) +
-      (0.95 *
+      (this.is5Bnb ? 1 : 1.02) * (this.fairLaunchRate * this.softCap) +
+      ((this.is5Bnb ? 0.95 : 0.98) *
         (this.fairLaunchRate * this.softCap) *
         this.liquidityPercentageOnPancake) /
         100;
@@ -101,9 +104,13 @@ export class FairLaunchComponent implements OnInit {
 
   calcTotalBnb() {
     this.totalBnbOwnerWallet =
-      this.softCap * (1 - this.liquidityPercentageOnPancake / 100) * 0.95;
+      this.softCap *
+      (1 - this.liquidityPercentageOnPancake / 100) *
+      (this.is5Bnb ? 0.95 : 0.98);
     this.totalBnbPancakeSwap =
-      this.softCap * (this.liquidityPercentageOnPancake / 100) * 0.95;
+      this.softCap *
+      (this.liquidityPercentageOnPancake / 100) *
+      (this.is5Bnb ? 0.95 : 0.98);
   }
 
   setListTokenomics() {
@@ -116,18 +123,21 @@ export class FairLaunchComponent implements OnInit {
       },
       {
         Name: 'Liquidity',
-        Value: (this.totalTokensForLiquidity / this.totalSupply) * 100 || 0.0,
+        Value: this.is5Bnb
+          ? (this.totalTokensForLiquidity / this.totalSupply) * 100 || 0.0
+          : this.youWillUseHowManyTotalSupply -
+              (this.fairLaunchRate / this.totalSupply) * 100 || 0.0,
         IsEditable: false,
         Color: '#039bfe',
       },
       {
-        Name: 'Burnet',
-        Value: this.burnet,
+        Name: 'Burned',
+        Value: this.Burned,
         IsEditable: true,
         Color: '#94a2af',
       },
       {
-        Name: 'Unloked',
+        Name: 'Unlocked',
         Value: 100 - this.youWillUseHowManyTotalSupply,
         IsEditable: false,
         Color: '#ffcc56',
@@ -150,7 +160,7 @@ export class FairLaunchComponent implements OnInit {
       });
 
       this.listTokenomics
-        .filter((n) => n.Name === 'Unloked')
+        .filter((n) => n.Name === 'Unlocked')
         .map((element) => {
           element.Value = this.getTotalUnloked();
         });
@@ -182,7 +192,7 @@ export class FairLaunchComponent implements OnInit {
     tokenomics.Value = value;
 
     this.listTokenomics
-      .filter((n) => n.Name === 'Unloked')
+      .filter((n) => n.Name === 'Unlocked')
       .map((element) => {
         element.Value = this.getTotalUnloked();
       });
@@ -196,7 +206,7 @@ export class FairLaunchComponent implements OnInit {
     let totalUnloked = 0;
 
     this.listTokenomics.forEach((element) => {
-      if (element.Name !== 'Unloked') {
+      if (element.Name !== 'Unlocked') {
         total = total + element.Value;
         totalUnloked = 100 - total;
       }
@@ -229,7 +239,6 @@ export class FairLaunchComponent implements OnInit {
 
   handleSetBnb(is5Bnb = false) {
     this.is5Bnb = is5Bnb;
-
     this.handleCalcTotalTokensForLiquidity();
   }
 

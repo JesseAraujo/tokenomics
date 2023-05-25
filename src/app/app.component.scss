@@ -81,6 +81,7 @@ footer {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background: #111111;
   }
 }
 
@@ -131,7 +132,6 @@ footer {
 
 .contain-loading {
   text-align: center;
-  width: 200px;
 
   .is-animating {
     animation: loading 2s linear infinite;

@@ -47,11 +47,12 @@
 
 @media screen and (max-width: 979px) {
   .popoverBody {
-    width: 110px;
+    width: 250px;
     margin-left: -70px;
   }
 
   .popoverBody:after {
     margin-left: -5px;
+    left: 25%;
   }
 }

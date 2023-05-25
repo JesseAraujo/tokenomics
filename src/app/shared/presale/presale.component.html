@@ -194,13 +194,13 @@
   <div class="content">
     <div class="group-inputs-views">
       <div class="group-views">
-        <div class="total">
+        <div class="total total-calc">
           <p>Check if it works or not</p>
           <div class="value-text" [ngClass]="isWork > 0 ? 'yes' : 'no'">
             {{ isWork > 0 ? "It Works" : "This doesnt work..." }}
           </div>
         </div>
-        <div class="total">
+        <div class="total total-calc">
           <p>You will use how many % of the total supply</p>
           <div class="value">
             {{ youWillUseHowManyTotalSupply | number : "1.2-2" }}%
@@ -212,13 +212,13 @@
   <div class="content">
     <div class="group-inputs-views">
       <div class="group-views">
-        <div class="total">
+        <div class="total total-calc">
           <p>Total BNB you'll get to your owner wallet</p>
           <div class="value">
             {{ totalBnbOwnerWallet | number : "1.2-2" }}
           </div>
         </div>
-        <div class="total">
+        <div class="total total-calc">
           <p>Total BNB will be listed on PancakeSwap</p>
           <div class="value">
             {{ totalBnbPancakeSwap | number : "1.2-2" }}

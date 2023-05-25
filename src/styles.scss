@@ -63,11 +63,16 @@ input {
   }
 }
 
+.group-input-checkbox {
+  display: flex;
+}
+
 .input-checkbox {
   display: flex;
   gap: 10px;
-  margin: 0 30px;
   align-items: center;
+  width: 212px;
+  margin-right: 10px;
 
   p {
     font-size: 0.8rem;
@@ -194,8 +199,8 @@ main {
         display: flex;
         gap: 10px;
 
-        .group-input-checkbox {
-          display: flex;
+        .input {
+          width: 212px;
         }
       }
 
@@ -205,6 +210,12 @@ main {
         gap: 20px;
 
         .total {
+          width: 155px;
+
+          &.total-calc {
+            width: 100%;
+          }
+
           p {
             font-size: 0.8rem;
             margin-bottom: 5px;

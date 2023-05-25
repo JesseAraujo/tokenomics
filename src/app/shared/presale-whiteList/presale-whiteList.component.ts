@@ -27,7 +27,7 @@ export class PresaleWhiteListComponent implements OnInit {
   public nameTokenomics: string = '';
   public valueTokenomics: any = null;
   public softCap = 0;
-  public burnet = 0;
+  public Burned = 0;
   public valueUnloked = 100;
   public safuContract = false;
   public is5Bnb = true;
@@ -66,7 +66,10 @@ export class PresaleWhiteListComponent implements OnInit {
         return;
       }
 
-      if (this.liquidityPercentageOnPancake < 51) {
+      if (
+        this.liquidityPercentageOnPancake &&
+        this.liquidityPercentageOnPancake < 51
+      ) {
         alert(
           'Error: Liquidity Percent % - Allowed value greater than or equal to 51'
         );
@@ -136,13 +139,13 @@ export class PresaleWhiteListComponent implements OnInit {
         Color: '#039bfe',
       },
       {
-        Name: 'Burnet',
-        Value: this.burnet,
+        Name: 'Burned',
+        Value: this.Burned,
         IsEditable: true,
         Color: '#94a2af',
       },
       {
-        Name: 'Unloked',
+        Name: 'Unlocked',
         Value: 100 - this.youWillUseHowManyTotalSupply,
         IsEditable: false,
         Color: '#ffcc56',
@@ -165,7 +168,7 @@ export class PresaleWhiteListComponent implements OnInit {
       });
 
       this.listTokenomics
-        .filter((n) => n.Name === 'Unloked')
+        .filter((n) => n.Name === 'Unlocked')
         .map((element) => {
           element.Value = this.getTotalUnloked();
         });
@@ -197,7 +200,7 @@ export class PresaleWhiteListComponent implements OnInit {
     tokenomics.Value = value;
 
     this.listTokenomics
-      .filter((n) => n.Name === 'Unloked')
+      .filter((n) => n.Name === 'Unlocked')
       .map((element) => {
         element.Value = this.getTotalUnloked();
       });
@@ -211,7 +214,7 @@ export class PresaleWhiteListComponent implements OnInit {
     let totalUnloked = 0;
 
     this.listTokenomics.forEach((element) => {
-      if (element.Name !== 'Unloked') {
+      if (element.Name !== 'Unlocked') {
         total = total + element.Value;
         totalUnloked = 100 - total;
       }

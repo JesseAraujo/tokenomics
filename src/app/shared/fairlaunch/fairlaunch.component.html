@@ -7,6 +7,20 @@
   <div class="group-buttons-title">
     <button
       type="button"
+      [ngClass]="{ actived: is5Bnb }"
+      (click)="handleSetBnb(true)"
+    >
+      5% BNB
+    </button>
+    <button
+      type="button"
+      [ngClass]="{ actived: !is5Bnb }"
+      (click)="handleSetBnb(false)"
+    >
+      2% BNB + 2% TOKEN
+    </button>
+    <button
+      type="button"
       (click)="handleDonwloadImage()"
       title="Export screen in image"
     >
@@ -153,13 +167,13 @@
   <div class="content">
     <div class="group-inputs-views">
       <div class="group-views">
-        <div class="total">
+        <div class="total total-calc">
           <p>Check if it works or not</p>
           <div class="value-text" [ngClass]="isWork > 0 ? 'yes' : 'no'">
             {{ isWork > 0 ? "It Works" : "This doesnt work..." }}
           </div>
         </div>
-        <div class="total">
+        <div class="total total-calc">
           <p>You will use how many % of the total supply</p>
           <div class="value">
             {{ youWillUseHowManyTotalSupply | number : "1.2-2" }}%
@@ -171,13 +185,13 @@
   <div class="content">
     <div class="group-inputs-views">
       <div class="group-views">
-        <div class="total">
+        <div class="total total-calc">
           <p>Total BNB you'll get to your owner wallet</p>
           <div class="value">
             {{ totalBnbOwnerWallet | number : "1.2-2" }}
           </div>
         </div>
-        <div class="total">
+        <div class="total total-calc">
           <p>Total BNB will be listed on PancakeSwap</p>
           <div class="value">
             {{ totalBnbPancakeSwap | number : "1.2-2" }}
@@ -281,7 +295,7 @@
 <div id="fairlaunch" class="container_main">
   <div class="logo">
     <img
-      src="assets/img/{{ isDark ? 'logo-white' : 'logo' }}.svg"
+      src="assets/img/{{ isDark ? 'logo-color' : 'logo' }}.svg"
       alt="Logo Stevelabs"
       width="200"
     />
