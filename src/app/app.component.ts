@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   public stepTokenomics = 1;
   public isDark = false;
   public subscription: Subscription[] = [];
+  public isLoading = false;
 
   constructor(private functionServce: FunctionService) {}
 
@@ -22,6 +23,12 @@ export class AppComponent implements OnInit {
       $html?.classList.toggle('dark-mode');
       this.functionServce.themeObservable();
     }
+
+    this.isLoading = true;
+
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 6000);
   }
 
   handleSetStepTokenomics(step: number) {

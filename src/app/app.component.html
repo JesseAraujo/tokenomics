@@ -1,10 +1,21 @@
-<div class="container">
+<div class="container loading" *ngIf="isLoading">
+  <div class="contain-loading">
+    <img
+      width="150"
+      src="assets/img/{{ isDark ? 'logo-color' : 'logo' }}.svg"
+      alt=""
+    />
+    <div class="progress-bar"></div>
+  </div>
+</div>
+
+<div class="container" *ngIf="!isLoading">
   <header>
     <div class="group-logo">
       <a href="http://stevelabs.io/services" target="_blank"
         ><img
           loading="lazy"
-          src="assets/img/{{ isDark ? 'logo-white' : 'logo' }}.svg"
+          src="assets/img/{{ isDark ? 'logo-color' : 'logo' }}.svg"
           alt="Logo Stevelabs"
           width="130"
         />
@@ -83,7 +94,7 @@
     <a href="http://stevelabs.io/services" target="_blank"
       ><img
         loading="lazy"
-        src="assets/img/{{ isDark ? 'logo-white' : 'logo' }}.svg"
+        src="assets/img/{{ isDark ? 'logo-color' : 'logo' }}.svg"
         alt="Logo Stevelabs"
         width="130"
       />
@@ -181,12 +192,13 @@
         </button>
       </nav>
 
-      <a href="https://t.me/pinkmoonfinance" target="_blank">
+      <a href="https://t.me/stevelabsaccelerator" target="_blank">
         <div class="help-desk">
           <p>Contact us on our Telegram if you need help!</p>
           <img
             src="assets/img/logos_telegram.svg"
-            alt=""
+            alt="@stevelabsaccelerator"
+            title="@stevelabsaccelerator"
             srcset=""
             loading="lazy"
           />
@@ -234,13 +246,13 @@
           <a
             href="https://www.instagram.com/stevelabsaccelerator/"
             target="_blank"
-            ><img
-              src="assets/img/instagram.svg"
-              alt="@stevelabsaccelerator"
-              width="25px"
-              loading="lazy"
-              title="@stevelabsaccelerator"
-          /></a>
+            title="@stevelabsaccelerator"
+            ><i
+              class="fa fa-instagram"
+              aria-hidden="true"
+              style="color: var(--contrast); font-size: 1.7rem"
+            ></i>
+          </a>
         </div>
 
         <div class="by">
@@ -248,6 +260,7 @@
           <a
             href="https://www.linkedin.com/in/jesse-brisola-de-araujo/"
             target="_blank"
+            style="color: var(--contrast)"
             >Jessé Brisola</a
           >
         </div>
@@ -273,11 +286,25 @@
         loading="lazy"
     /></a>
 
+    <a href="https://t.me/stevelabsaccelerator" target="_blank">
+      <div class="help-desk">
+        <p>Contact us on our Telegram if you need help!</p>
+        <img
+          src="assets/img/logos_telegram.svg"
+          alt="@stevelabsaccelerator"
+          title="@stevelabsaccelerator"
+          srcset=""
+          loading="lazy"
+        />
+      </div>
+    </a>
+
     <div class="by">
       Developed by
       <a
         href="https://www.linkedin.com/in/jesse-brisola-de-araujo/"
         target="_blank"
+        style="color: var(--contrast)"
         >Jessé Brisola</a
       >
     </div>

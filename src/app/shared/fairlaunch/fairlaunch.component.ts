@@ -56,10 +56,21 @@ export class FairLaunchComponent implements OnInit {
   handleCalcTotalTokensForLiquidity() {
     if (this.totalSupply) {
       if (this.safuContract && this.liquidityPercentageOnPancake < 60) {
-        alert('Error: Allowed value greater than or equal to 60');
+        alert(
+          'Error: Liquidity Percent % - Allowed value greater than or equal to 60'
+        );
         this.liquidityPercentageOnPancake = 60;
         return;
       }
+
+      if (this.liquidityPercentageOnPancake < 51) {
+        alert(
+          'Error: Liquidity Percent % - Allowed value greater than or equal to 51'
+        );
+        this.liquidityPercentageOnPancake = 51;
+        return;
+      }
+
       this.totalTokensForLiquidity =
         this.totalTokensForFairLaunch *
         0.95 *

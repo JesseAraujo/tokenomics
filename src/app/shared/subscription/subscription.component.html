@@ -121,41 +121,43 @@
           [options]="{ precision: 0, decimal: '', align: 'left' }"
         />
       </div>
-      <div class="input-checkbox">
-        <input
-          type="checkbox"
-          id="safuContract"
-          [(ngModel)]="safuContract"
-          (click)="handleSelectSafuContract()"
-        />
-        <p for="safuContract">
-          Safu Contract
-          <app-popover
-            >Criteria of SAFU Project -
-            <a
-              href="https://docs.pinksale.finance/important/safu-contract#safu-developers"
-              target="_blank"
-              >https://docs.pinksale.finance/important/safu-contract#safu-developers</a
-            ></app-popover
-          >
-        </p>
-      </div>
-      <div class="input">
-        <p>
-          Liquidity Percent %
-          <app-popover
-            >Percentage of Bnb's filled that will be added to
-            liquidity</app-popover
-          >
-        </p>
-        <input
-          type="text"
-          inputmode="numeric"
-          [(ngModel)]="liquidityPercentageOnPancake"
-          placeholder="0.00"
-          (blur)="handleCalcTotalTokensForLiquidity()"
-          currencyMask
-        />
+      <div class="group-input-checkbox">
+        <div class="input-checkbox">
+          <input
+            type="checkbox"
+            id="safuContract"
+            [(ngModel)]="safuContract"
+            (click)="handleSelectSafuContract()"
+          />
+          <p for="safuContract">
+            Safu Contract
+            <app-popover
+              >Criteria of SAFU Project -
+              <a
+                href="https://docs.pinksale.finance/important/safu-contract#safu-developers"
+                target="_blank"
+                >https://docs.pinksale.finance/important/safu-contract#safu-developers</a
+              ></app-popover
+            >
+          </p>
+        </div>
+        <div class="input">
+          <p>
+            Liquidity Percent %
+            <app-popover
+              >Percentage of Bnb's filled that will be added to
+              liquidity</app-popover
+            >
+          </p>
+          <input
+            type="text"
+            inputmode="numeric"
+            [(ngModel)]="liquidityPercentageOnPancake"
+            placeholder="0.00"
+            (blur)="handleCalcTotalTokensForLiquidity()"
+            currencyMask
+          />
+        </div>
       </div>
     </div>
     <div class="group-views">
@@ -319,7 +321,7 @@
 <div id="subscription" class="container_main">
   <div class="logo">
     <img
-      src="assets/img/{{ isDark ? 'logo-white' : 'logo' }}.svg"
+      src="assets/img/{{ isDark ? 'logo-color' : 'logo' }}.svg"
       alt="Logo Stevelabs"
       width="200"
     />
