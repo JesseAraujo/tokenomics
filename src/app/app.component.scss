@@ -92,6 +92,10 @@ footer {
   }
 }
 
+.help-desk-mobile {
+  display: none;
+}
+
 .help-desk {
   width: 220px;
   margin: 20px 0;
@@ -157,6 +161,32 @@ footer {
     display: none;
   }
 
+  .container {
+    gap: 0 !important;
+  }
+
+  .help-desk-mobile {
+    margin-top: -18px;
+    background: var(--gray-content);
+    border-radius: 8px;
+    padding: 16px !important;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+
+    .help-desk {
+      width: 100%;
+      margin: 0 !important;
+      padding: 0 !important;
+
+      img {
+        margin-top: 0 !important;
+      }
+    }
+  }
+
   .title {
     width: 100px;
     flex-direction: column;
@@ -219,8 +249,8 @@ footer {
     margin-top: -30px;
 
     .by {
-      font-size: 0.7rem;
-      color: var(--contrast);
+      font-size: 0.6rem;
+      margin-top: 50px;
     }
   }
 }
