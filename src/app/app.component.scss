@@ -86,7 +86,7 @@ footer {
       width: 100%;
 
       img {
-        width: 100%;
+        width: 500px;
       }
     }
   }
@@ -182,6 +182,14 @@ footer {
     flex-direction: column;
     width: 100%;
     max-width: 100%;
+
+    .contain-loading {
+      width: 100%;
+
+      img {
+        width: 100%;
+      }
+    }
   }
 
   header {
