@@ -80,7 +80,7 @@ footer {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: #111111;
+    background: var(--white);
 
     .contain-loading {
       width: 100%;
@@ -182,13 +182,13 @@ footer {
     flex-direction: column;
     width: 100%;
     max-width: 100%;
+  }
 
-    .contain-loading {
-      width: 100%;
+  .contain-loading {
+    width: 100%;
 
-      img {
-        width: 100%;
-      }
+    img {
+      width: 100% !important;
     }
   }
 
