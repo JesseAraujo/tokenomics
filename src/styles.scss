@@ -45,7 +45,6 @@
   }
 }
 
-html,
 body {
   background: var(--white);
   overflow: hidden;
@@ -382,6 +381,10 @@ main {
 
       .group-input {
         flex-direction: column;
+
+        .input {
+          width: 100% !important;
+        }
 
         .group-input-checkbox {
           .input-checkbox {
